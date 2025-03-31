@@ -1,0 +1,28 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  #datasource:
+  #  url: jdbc:h2:mem:testdb
+  #  username: sa
+  h2:
+    console:
+      enabled: true
+
+  secutiry:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: test_id
+            client-secret: test_secret
+            scope:
+              - email
+              - profile
+
+jwt:
+  issuer: wjstjdud21@gmail.com
+  secret_key: test_key
