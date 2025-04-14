@@ -14,7 +14,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://awseb-e-32aa3edpe3-stack-awsebrdsdatabase-t8mqvvjnfzfj.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com:3306/mysql?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://awseb-e-32aa3edpe3-stack-awsebrdsdatabase-t8mqvvjnfzfj.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com:3306/ebdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: fixiroot
     password: fixiroot123
 
