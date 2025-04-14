@@ -1,7 +1,3 @@
-server:
-  port: 5000
-  address: 127.0.0.1
-
 spring:
   jpa:
     hibernate:
@@ -14,9 +10,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://awseb-e-32aa3edpe3-stack-awsebrdsdatabase-t8mqvvjnfzfj.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com:3306/ebdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: fixiroot
-    password: fixiroot123
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
 # 로컬 테스트용
 #  datasource:
