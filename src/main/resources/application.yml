@@ -1,30 +1,24 @@
 spring:
   jpa:
+    hibernate:
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
-server:
-  port: ${SERVER_PORT}
-  #datasource:
-  #  url: jdbc:h2:mem:testdb
-  #  username: sa
-  h2:
-    console:
-      enabled: true
 
-  secutiry:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: test_id
-            client-secret: test_secret
-            scope:
-              - email
-              - profile
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://awseb-e-32aa3edpe3-stack-awsebrdsdatabase-t8mqvvjnfzfj.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com:3306/mysql?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: fixiroot
+    password: fixiroot123
 
-jwt:
-  issuer: sanhagteamplace@gmail.com
-  secret_key: test_key
+# 로컬 테스트용
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+
+#  h2:
+#    console:
+#      enabled: true

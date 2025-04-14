@@ -11,8 +11,8 @@ import teamplace.pixi.repository.UserRepository;
 public class UserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
     @Override
-    public User loadUserByUsername(String login_id) {
-        return userRepository.findByLoginId(login_id)
-                .orElseThrow(() -> new IllegalArgumentException(login_id));
+    public User loadUserByUsername(String loginId) {
+        return userRepository.findByLoginId(loginId)
+                .orElseThrow(() -> new IllegalArgumentException( "존재하지 않는 회원 정보입니다." + (loginId)));
     }
 }

@@ -1,24 +1,20 @@
 package teamplace.pixi.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 @Configuration
-@EnableWebMvc
 public class SwaggerConfig {
-
     @Bean
     public OpenAPI openAPI() {
-        return new OpenAPI()
-                .components(new Components())
-                .info(apiInfo());
-    }
 
-    private Info apiInfo() {
-        return new Info()
-                .title("API Title") // API의 제목
-                .description("This is my Swagger UI") // API에 대한 설명
-                .version("1.0.0"); // API의 버전
+        Info info = new Info()
+                .version("v1.0.0")
+                .title("FIXI API")
+                .description("FIXI API 목록입니다.");
+
+        return new OpenAPI()
+                .info(info);
     }
 }

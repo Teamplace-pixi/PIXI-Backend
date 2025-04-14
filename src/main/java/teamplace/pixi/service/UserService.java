@@ -5,6 +5,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import teamplace.pixi.domain.User;
 import teamplace.pixi.dto.AddUserRequest;
+import teamplace.pixi.dto.LoginRequest;
+import teamplace.pixi.error.DuplicateLoginIdException;
+import teamplace.pixi.error.UserNotFoundException;
 import teamplace.pixi.repository.UserRepository;
 
 @RequiredArgsConstructor
@@ -14,19 +17,29 @@ public class UserService {
 
     public Long save(AddUserRequest dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // 중복 로그인 ID 체크
+        if (userRepository.existsByLoginId(dto.getLoginId())) {
+            throw new DuplicateLoginIdException("이미 존재하는 ID입니다.");
+        }
+
         return userRepository.save(User.builder()
-                .email(dto.getLogin_id())
+                .loginId(dto.getLoginId())
                 .password(encoder.encode(dto.getPassword()))
-                .build()).getUser_id();
+                .email(dto.getEmail())
+                .nickname(dto.getNickName())
+                .build()).getUserId();
     }
 
-    public User findById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원 정보입니다."));
-    }
+    public void login(LoginRequest dto) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user = userRepository.findByLoginId(dto.getLoginId())
+                .orElseThrow(() -> new UserNotFoundException("존재하지 않는 회원 정보입니다."));
 
-    public User findByLoginId(String login_id) {
-        return userRepository.findByLoginId(login_id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원 정보입니다."));
+        if (!encoder.matches(dto.getPassword(), user.getPassword())) {
+            throw new UserNotFoundException("존재하지 않는 회원 정보입니다.");
+        }
+
+        // JWT 발급 or 세션 처리 등은 여기에 추가
     }
 }
+

@@ -1,31 +1,74 @@
 package teamplace.pixi.contoller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import teamplace.pixi.dto.AddUserRequest;
+import teamplace.pixi.dto.LoginRequest;
+import teamplace.pixi.dto.SuccessResponse;
+import teamplace.pixi.error.DuplicateLoginIdException;
+import teamplace.pixi.dto.ErrorResponse;
+import teamplace.pixi.error.UserNotFoundException;
 import teamplace.pixi.service.UserService;
 
+@RestController
 @RequiredArgsConstructor
-@Controller
+@RequestMapping("/users")
 public class UserApiController {
+
     private final UserService userService;
 
-    @PostMapping("/users")
-    public String signup(AddUserRequest request) {
-        userService.save(request);
-        return "redirect:/users/login";
+    @Operation(summary = "회원가입", description = "회원가입을 수행합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원가입 성공",
+                    content = @Content(schema = @Schema(implementation = SuccessResponse.class))),
+            @ApiResponse(responseCode = "409", description = "이미 존재하는 ID입니다.",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody AddUserRequest request) {
+        try {
+            userService.save(request);
+            return ResponseEntity.ok(new SuccessResponse("회원가입 성공"));
+        } catch (DuplicateLoginIdException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ErrorResponse("409", e.getMessage()));
+        }
     }
 
-    @GetMapping("/users/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    @Operation(summary = "로그인", description = "로그인을 수행합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "로그인 성공",
+                    content = @Content(schema = @Schema(implementation = SuccessResponse.class))),
+            @ApiResponse(responseCode = "404", description = "존재하지 않는 회원 정보입니다.",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        try {
+            userService.login(request);
+            return ResponseEntity.ok(new SuccessResponse("로그인 성공"));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse("404", e.getMessage()));
+        }
+    }
+
+    @Operation(summary = "로그아웃", description = "로그아웃을 수행합니다.")
+    @GetMapping("/logout")
+    public ResponseEntity<SuccessResponse> logout(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response,
                 SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/users/login";
+        return ResponseEntity.ok(new SuccessResponse("로그아웃 성공"));
     }
 }
