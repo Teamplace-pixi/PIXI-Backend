@@ -42,7 +42,7 @@ public class WebSecurityConfig {
                         .requestMatchers(
                                 "/swagger", "/swagger-ui.html", "/swagger-ui/**",
                                 "/api-docs", "/api-docs/**", "/v3/api-docs/**",
-                                "/api/hello", "/api/authenticate", "/api/signup",
+                                "/", "/api/authenticate", "/api/signup",
                                 "/users/signup", "/users/login", "/users/logout"
                         ).permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
