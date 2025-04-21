@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 import teamplace.pixi.domain.User;
 import teamplace.pixi.dto.AddUserRequest;
 import teamplace.pixi.dto.LoginRequest;
-import teamplace.pixi.error.DuplicateLoginIdException;
-import teamplace.pixi.error.UserNotFoundException;
+import teamplace.pixi.error.UserException;
 import teamplace.pixi.repository.UserRepository;
 
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class UserService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         // 중복 로그인 ID 체크
         if (userRepository.existsByLoginId(dto.getLoginId())) {
-            throw new DuplicateLoginIdException("이미 존재하는 ID입니다.");
+            throw new UserException("이미 존재하는 ID입니다.");
         }
 
         return userRepository.save(User.builder()
@@ -33,10 +32,10 @@ public class UserService {
     public void login(LoginRequest dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         User user = userRepository.findByLoginId(dto.getLoginId())
-                .orElseThrow(() -> new UserNotFoundException("존재하지 않는 회원 정보입니다."));
+                .orElseThrow(() -> new UserException("존재하지 않는 회원 정보입니다."));
 
         if (!encoder.matches(dto.getPassword(), user.getPassword())) {
-            throw new UserNotFoundException("존재하지 않는 회원 정보입니다.");
+            throw new UserException("존재하지 않는 회원 정보입니다.");
         }
 
         // JWT 발급 or 세션 처리 등은 여기에 추가
