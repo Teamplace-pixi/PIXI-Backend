@@ -1,10 +1,10 @@
-package teamplace.pixi.service;
+package teamplace.pixi.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import teamplace.pixi.domain.User;
-import teamplace.pixi.repository.UserRepository;
+import teamplace.pixi.user.domain.User;
+import teamplace.pixi.user.repository.UserRepository;
 
 @RequiredArgsConstructor
 @Service

@@ -1,20 +1,20 @@
-package teamplace.pixi.service;
+package teamplace.pixi.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import teamplace.pixi.domain.User;
-import teamplace.pixi.dto.AddUserRequest;
-import teamplace.pixi.dto.LoginRequest;
-import teamplace.pixi.error.UserException;
-import teamplace.pixi.repository.UserRepository;
+import teamplace.pixi.user.domain.User;
+import teamplace.pixi.user.dto.SignupRequest;
+import teamplace.pixi.user.dto.LoginRequest;
+import teamplace.pixi.user.error.UserException;
+import teamplace.pixi.user.repository.UserRepository;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
 
-    public Long save(AddUserRequest dto) {
+    public Long save(SignupRequest dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         // 중복 로그인 ID 체크
         if (userRepository.existsByLoginId(dto.getLoginId())) {

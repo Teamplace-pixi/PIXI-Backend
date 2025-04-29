@@ -1,4 +1,4 @@
-package teamplace.pixi.config;
+package teamplace.pixi.util.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
