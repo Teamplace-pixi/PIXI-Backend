@@ -1,7 +1,7 @@
-package teamplace.pixi.repository;
+package teamplace.pixi.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import teamplace.pixi.domain.User;
+import teamplace.pixi.user.domain.User;
 
 import java.util.Optional;
 

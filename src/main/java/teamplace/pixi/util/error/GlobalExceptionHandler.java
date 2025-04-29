@@ -1,9 +1,10 @@
-package teamplace.pixi.error;
+package teamplace.pixi.util.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import teamplace.pixi.user.error.UserException;
 
 import java.util.HashMap;
 import java.util.Map;

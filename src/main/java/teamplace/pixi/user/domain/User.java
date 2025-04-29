@@ -1,14 +1,16 @@
-package teamplace.pixi.domain;
+package teamplace.pixi.user.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,12 +37,39 @@ public class User implements UserDetails {
     @Column(name = "nickname", unique = true)
     private String nickname;
 
+    @Column(name = "is_sub", nullable = false)
+    private boolean isSub = false;
+
+    @CreatedDate
+    @Column(name = "join_date", nullable = false, updatable = false)
+    private LocalDateTime joinDate;
+
+    @Column(name = "roll_id", nullable = false)
+    private int rollId = 0;
+
+    @Column(name = "profile_id", nullable = false)
+    private int profileId = 0;
+
+    @Column(name = "ai_cnt", nullable = false)
+    private int aiCnt = 5;
+
+
     @Builder
-    public User(String loginId, String password, String email, String nickname) {
+    public User(String loginId, String password, String email, String nickname,
+                Boolean isSub, Integer rollId, Integer profileId, Integer aiCnt) {
         this.loginId = loginId;
         this.password = password;
         this.email = email;
         this.nickname = nickname;
+        this.isSub = isSub;
+        this.rollId = rollId;
+        this.profileId = profileId;
+        this.aiCnt = aiCnt;
+    }
+
+    public User updateNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
     }
 
     @Override
@@ -50,7 +79,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return loginId; // 로그인 ID로 로그인하게 설정
+        return loginId;
     }
 
     @Override
@@ -77,10 +106,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    public User updateNickname(String nickname) {
-        this.nickname = nickname;
-        return this;
-    }
 }
+
 
