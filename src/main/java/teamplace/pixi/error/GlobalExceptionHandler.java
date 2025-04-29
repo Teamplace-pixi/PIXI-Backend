@@ -11,8 +11,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(DuplicateLoginIdException.class)
-    public ResponseEntity<Map<String, String>> handleDuplicateLoginIdException(DuplicateLoginIdException ex) {
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicateLoginIdException(UserException ex) {
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("errorCode", "409");
         errorResponse.put("errorMessage", ex.getMessage());

@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import teamplace.pixi.dto.AddUserRequest;
 import teamplace.pixi.dto.LoginRequest;
 import teamplace.pixi.dto.SuccessResponse;
-import teamplace.pixi.error.DuplicateLoginIdException;
 import teamplace.pixi.dto.ErrorResponse;
-import teamplace.pixi.error.UserNotFoundException;
+import teamplace.pixi.error.UserException;
 import teamplace.pixi.service.UserService;
 
 @RestController
@@ -40,7 +39,8 @@ public class UserApiController {
         try {
             userService.save(request);
             return ResponseEntity.ok(new SuccessResponse("회원가입 성공"));
-        } catch (DuplicateLoginIdException e) {
+        }
+        catch (UserException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(new ErrorResponse("409", e.getMessage()));
         }
@@ -58,7 +58,7 @@ public class UserApiController {
         try {
             userService.login(request);
             return ResponseEntity.ok(new SuccessResponse("로그인 성공"));
-        } catch (UserNotFoundException e) {
+        } catch (UserException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new ErrorResponse("404", e.getMessage()));
         }
