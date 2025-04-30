@@ -16,9 +16,20 @@ public class UserService {
 
     public Long save(SignupRequest dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         // 중복 로그인 ID 체크
         if (userRepository.existsByLoginId(dto.getLoginId())) {
             throw new UserException("이미 존재하는 ID입니다.");
+        }
+
+        // 중복 email 체크
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new UserException("이미 존재하는 email입니다.");
+        }
+
+        // 중복 nickname 체크
+        if (userRepository.existsByNickname(dto.getNickName())) {
+            throw new UserException("이미 존재하는 이름입니다.");
         }
 
         return userRepository.save(User.builder()
@@ -26,6 +37,10 @@ public class UserService {
                 .password(encoder.encode(dto.getPassword()))
                 .email(dto.getEmail())
                 .nickname(dto.getNickName())
+                .isSub(false)
+                .rollId(0)
+                .profileId(0)
+                .aiCnt(5)
                 .build()).getUserId();
     }
 

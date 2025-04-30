@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails {
 
     @Id
@@ -34,24 +36,24 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "nickname", unique = true)
+    @Column(name = "nickname", nullable = false, unique = true)
     private String nickname;
 
     @Column(name = "is_sub", nullable = false)
-    private boolean isSub = false;
+    private boolean isSub;
 
     @CreatedDate
     @Column(name = "join_date", nullable = false, updatable = false)
     private LocalDateTime joinDate;
 
     @Column(name = "roll_id", nullable = false)
-    private int rollId = 0;
+    private int rollId;
 
     @Column(name = "profile_id", nullable = false)
-    private int profileId = 0;
+    private int profileId;
 
     @Column(name = "ai_cnt", nullable = false)
-    private int aiCnt = 5;
+    private int aiCnt;
 
 
     @Builder
@@ -67,8 +69,41 @@ public class User implements UserDetails {
         this.aiCnt = aiCnt;
     }
 
+    // 닉네임 변경
     public User updateNickname(String nickname) {
         this.nickname = nickname;
+        return this;
+    }
+
+    // 구독 여부 변경
+    public User updateSubscription(boolean isSub) {
+        this.isSub = isSub;
+        return this;
+    }
+
+    // 역할 ID 변경
+    public User updateRollId(int rollId) {
+        this.rollId = rollId;
+        return this;
+    }
+
+    // 프로필 사진 ID 변경
+    public User updateProfileId(int profileId) {
+        this.profileId = profileId;
+        return this;
+    }
+
+    // AI 사용 횟수 1 감소 (최소값 0)
+    public User decreaseAiCnt() {
+        if (this.aiCnt > 0) {
+            this.aiCnt--;
+        }
+        return this;
+    }
+
+    // AI 사용 횟수 5로 리셋
+    public User resetAiCnt() {
+        this.aiCnt = 5;
         return this;
     }
 
@@ -107,5 +142,3 @@ public class User implements UserDetails {
         return true;
     }
 }
-
-

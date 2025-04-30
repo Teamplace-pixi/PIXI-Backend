@@ -31,7 +31,7 @@ public class UserApiController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "회원가입 성공",
                     content = @Content(schema = @Schema(implementation = SuccessResponse.class))),
-            @ApiResponse(responseCode = "409", description = "이미 존재하는 ID입니다.",
+            @ApiResponse(responseCode = "409", description = "이미 존재하는 회원 정보입니다.",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping("/signup")
