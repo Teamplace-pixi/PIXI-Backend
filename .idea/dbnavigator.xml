@@ -14,6 +14,9 @@
       <assistant-state connection-id="b376909f-9d02-4926-8070-b703c12d1a16" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
+      <assistant-state connection-id="8e2e64f8-c995-4019-84ef-9e686b0540f5" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
     </assistants>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
