@@ -14,6 +14,9 @@
       <assistant-state connection-id="b376909f-9d02-4926-8070-b703c12d1a16" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
+      <assistant-state connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
+        <messages />
+      </assistant-state>
       <assistant-state connection-id="8e2e64f8-c995-4019-84ef-9e686b0540f5" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
         <messages />
       </assistant-state>
@@ -26,19 +29,37 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="b376909f-9d02-4926-8070-b703c12d1a16">
-      <console name="Connection" type="STANDARD" schema="ebdb" session="Main" />
+    <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5">
+      <console name="rds" type="STANDARD" schema="mysql" session="Main"><![CDATA[create database fixi;
+use fixi;
+
+create table users (
+    user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    login_id VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    nickname VARCHAR(255) NOT NULL UNIQUE,
+    is_sub BOOLEAN NOT NULL,
+    join_date DATETIME NOT NULL,
+    roll_id INT NOT NULL,
+    profile_id INT NOT NULL,
+    ai_cnt INT NOT NULL
+);
+
+show tables;
+select * from users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" object-ref="consoles/rds" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="b376909f-9d02-4926-8070-b703c12d1a16" />
-    <connection id="8e2e64f8-c995-4019-84ef-9e686b0540f5" />
+    <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -57,9 +78,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="b376909f-9d02-4926-8070-b703c12d1a16" active="true" signed="true">
+      <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="rds" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -68,9 +89,9 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="awseb-e-32aa3edpe3-stack-awsebrdsdatabase-t8mqvvjnfzfj.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com" />
+          <host value="awseb-e-32aa3edpe3-stack-awsebrdsdatabase-dveyp4lawu4b.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com" />
           <port value="3306" />
-          <database value="ebdb" />
+          <database value="mysql" />
           <tns-folder value="" />
           <tns-profile value="" />
           <type value="USER_PASSWORD" />
@@ -571,5 +592,9 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+    <execution-variable-types />
   </component>
 </project>
