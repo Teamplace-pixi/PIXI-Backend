@@ -1,4 +1,4 @@
-package teamplace.pixi.contoller;
+package teamplace.pixi.user.contoller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,12 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
-import teamplace.pixi.dto.AddUserRequest;
-import teamplace.pixi.dto.LoginRequest;
-import teamplace.pixi.dto.SuccessResponse;
-import teamplace.pixi.dto.ErrorResponse;
-import teamplace.pixi.error.UserException;
-import teamplace.pixi.service.UserService;
+import teamplace.pixi.user.dto.SignupRequest;
+import teamplace.pixi.user.dto.LoginRequest;
+import teamplace.pixi.util.error.SuccessResponse;
+import teamplace.pixi.util.error.ErrorResponse;
+import teamplace.pixi.user.error.UserException;
+import teamplace.pixi.user.service.UserService;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,11 +31,11 @@ public class UserApiController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "회원가입 성공",
                     content = @Content(schema = @Schema(implementation = SuccessResponse.class))),
-            @ApiResponse(responseCode = "409", description = "이미 존재하는 ID입니다.",
+            @ApiResponse(responseCode = "409", description = "이미 존재하는 회원 정보입니다.",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody AddUserRequest request) {
+    public ResponseEntity<?> signup(@RequestBody SignupRequest request) {
         try {
             userService.save(request);
             return ResponseEntity.ok(new SuccessResponse("회원가입 성공"));

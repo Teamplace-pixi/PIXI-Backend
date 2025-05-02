@@ -1,4 +1,4 @@
-package teamplace.pixi.contoller;
+package teamplace.pixi.home.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

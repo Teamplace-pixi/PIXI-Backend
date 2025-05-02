@@ -1,4 +1,4 @@
-package teamplace.pixi.dto;
+package teamplace.pixi.util.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package teamplace.pixi.error;
+package teamplace.pixi.user.error;
 
 public class UserException extends RuntimeException {
   public UserException(String message) {
