@@ -43,7 +43,7 @@ public class User implements UserDetails {
     private boolean isSub;
 
     @CreatedDate
-    @Column(name = "join_date", nullable = false, updatable = false)
+    @Column(name = "join_date")
     private LocalDateTime joinDate;
 
     @Column(name = "roll_id", nullable = false)
