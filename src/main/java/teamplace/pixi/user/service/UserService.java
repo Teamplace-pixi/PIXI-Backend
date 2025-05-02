@@ -3,6 +3,7 @@ package teamplace.pixi.user.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import teamplace.pixi.user.domain.User;
 import teamplace.pixi.user.dto.SignupRequest;
 import teamplace.pixi.user.dto.LoginRequest;
@@ -14,6 +15,7 @@ import teamplace.pixi.user.repository.UserRepository;
 public class UserService {
     private final UserRepository userRepository;
 
+    @Transactional
     public Long save(SignupRequest dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -28,7 +30,7 @@ public class UserService {
         }
 
         // 중복 nickname 체크
-        if (userRepository.existsByNickname(dto.getNickName())) {
+        if (userRepository.existsByNickname(dto.getNickname())) {
             throw new UserException("이미 존재하는 이름입니다.");
         }
 
@@ -36,7 +38,7 @@ public class UserService {
                 .loginId(dto.getLoginId())
                 .password(encoder.encode(dto.getPassword()))
                 .email(dto.getEmail())
-                .nickname(dto.getNickName())
+                .nickname(dto.getNickname())
                 .isSub(false)
                 .rollId(0)
                 .profileId(0)
@@ -44,6 +46,7 @@ public class UserService {
                 .build()).getUserId();
     }
 
+    @Transactional(readOnly = true)
     public void login(LoginRequest dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         User user = userRepository.findByLoginId(dto.getLoginId())
