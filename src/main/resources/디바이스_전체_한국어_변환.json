@@ -1,0 +1,974 @@
+[
+  {
+    "이름": "삼성 갤럭시 Fold",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/DA3HLTL6DAFVMDFD.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Flip",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/jxwEmDe6mPVXSbVY.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Flip 6",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/RjOuqBMPZnPJymSi.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Flip3",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/tl5GuZQjTBOaZXW1.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Flip4",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/2lya5CqDtdXJsaAH.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Flip5",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/jF1bmqD1DPcUEVrE.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Fold 6",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Q3qUGWcuyZnXLgee.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Fold2",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/HlqESjvDneOpAqia.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Fold3",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/jkSmI5LmmZpuCtti.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Fold4",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/FpjSg2txQRI3jkEc.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Z Fold5",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/6SF4VXFyMrNYTsDZ.standard"
+  },
+  {
+    "이름": "아이폰 16e",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Anm4m23SRwuRbQRL.standard"
+  },
+  {
+    "이름": "아이폰 16 Pro Max",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/5uhh2Qp5dYqSBm2d.standard"
+  },
+  {
+    "이름": "아이폰 16 Pro",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/3rLXoQgLO25fHH5P.standard"
+  },
+  {
+    "이름": "아이폰 16 Plus",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/iILgmnpsB3gBB2Hv.standard"
+  },
+  {
+    "이름": "아이폰 16",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/uTJRLlTegRbyYti3.standard"
+  },
+  {
+    "이름": "아이폰 15 Pro Max",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/lnwHCfxQCCxVHGqx.standard"
+  },
+  {
+    "이름": "아이폰 15 Pro",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/s6aaFyNT36IJf4Ab.standard"
+  },
+  {
+    "이름": "아이폰 15 Plus",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/lMFcWXo1ppqkIHYV.standard"
+  },
+  {
+    "이름": "아이폰 15",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/AP3Ky1i5YOOSuoTp.standard"
+  },
+  {
+    "이름": "아이폰 14 Pro Max",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/stsGu3TIrGqg5ocy.standard"
+  },
+  {
+    "이름": "아이폰 14 Pro",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/BNBpmDXHiiZIDKYY.standard"
+  },
+  {
+    "이름": "아이폰 14 Plus",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/tHoGXqWZJW1iXgnC.standard"
+  },
+  {
+    "이름": "아이폰 14",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/vHLAXd1OyVEBVZ5Q.standard"
+  },
+  {
+    "이름": "아이폰 SE 2022",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/WLqQMVYJOPbgaBKa.standard"
+  },
+  {
+    "이름": "아이폰 13 Pro Max",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/s3IjPYJuZYchJDnv.standard"
+  },
+  {
+    "이름": "아이폰 13 Pro",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/3Vl3h5GWMOvmKiln.standard"
+  },
+  {
+    "이름": "아이폰 13 미니",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/uCIPQMgRYaxFZDl2.standard"
+  },
+  {
+    "이름": "아이폰 13",
+    "브랜드": "Apple",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/nGcRgAKBpmABSW5N.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S25 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/OTUmCXWAwiFX16Ky.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S25 Edge",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/jyiUVANhDvBDqYHP.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S25+",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/SRqWJ5cMooLUeZeK.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S25",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/U2pHZegTIUdaNYoe.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S24 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/H3LnK3qdUOMkUTI2.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S24+",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/GK5BUfRBrJpUptkS.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S24",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/qiyIuZFUswEkToQj.standard"
+  },
+  {
+    "이름": "갤럭시 S23 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/QSpAphAXSd3APvxv.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S23+",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/dri1cwHhgqtZYJpq.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S23 FE",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/sGFELbpnT3AWmTF1.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S23",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/GtlsTEvP1V5JoRHB.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S22 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/MVbSDgKONdBJNEQX.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S22 Plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/kTUcBNLbirobMYAs.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S22",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/6qtlTASMCi6dPHY6.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S21 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/BDwuLIaAXJqdcnLY.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S21 Plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/udV3naVnUhSDguuP.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S21 FE",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/XFUqoCLKS4BSRDTx.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S21 5G",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/CZALXCNDygyxuW5p.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S20 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ZDg1MLKTxtEey2jl.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S20 Plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ZJveErudUGOuPsYN.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S20 FE 5G",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/JoMuaGWh6KMawdpY.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 S20 FE",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/RqvNR4PH4sPw6owf.standard"
+  },
+  {
+    "이름": "갤럭시 S20",
+    "브랜드": "Galaxy",
+    "기기유형코드": 0,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/DTDVTgAXUoxI5ZL5.standard"
+  },
+  {
+    "이름": "아이패드 1",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/o2cELyAsyFLWm5aB.standard"
+  },
+  {
+    "이름": "아이패드 2",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Mwfvd5qH3sPoRlF1.standard"
+  },
+  {
+    "이름": "아이패드 3",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/cublrKnMUIbeC3Qk.standard"
+  },
+  {
+    "이름": "아이패드 4",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/FwSRsSV1lBceAIPO.standard"
+  },
+  {
+    "이름": "아이패드 5",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/bJKVN4DIVUSZLHMf.standard"
+  },
+  {
+    "이름": "아이패드 6",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/G2GPxsLfilKrChlL.standard"
+  },
+  {
+    "이름": "아이패드 7",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/OIKfISXA6OEXSx2X.standard"
+  },
+  {
+    "이름": "아이패드 8",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/KJSjYD4dXSb4Ubbv.standard"
+  },
+  {
+    "이름": "아이패드 9",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/VymOBa2hh4VEbHyo.standard"
+  },
+  {
+    "이름": "아이패드 10",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/nxM6njcbV5ZfHOrE.standard"
+  },
+  {
+    "이름": "아이패드 11",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/FZdWqKNwjP44HHXv.standard"
+  },
+  {
+    "이름": "아이패드 Pro 9.7\"",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/L3MnDcYAofVjJrDV.standard"
+  },
+  {
+    "이름": "아이패드 Pro 10.5\"",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/fXfTptWt1LB1PQ1L.standard"
+  },
+  {
+    "이름": "아이패드 Pro 11\" 1세대",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/CD3qb2DYZbdfUtJH.standard"
+  },
+  {
+    "이름": "아이패드 Pro 11\" 2nd Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/GYkqUsG4lOdB4nts.standard"
+  },
+  {
+    "이름": "아이패드 Pro 11\" 3rd Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/HfVegZ5EkecXYOOe.standard"
+  },
+  {
+    "이름": "아이패드 Pro 11\" 4세대",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/NrO4LVyAYBVjWRJN.standard"
+  },
+  {
+    "이름": "아이패드 Pro 11\" 5th Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/J2nbiBjKANrPFWE3.standard"
+  },
+  {
+    "이름": "아이패드 Pro 12.9\"",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ADLJwl3qZ1TJnh2V.standard"
+  },
+  {
+    "이름": "아이패드 Pro 12.9\" 2nd Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/lq3yoSKROHTCLgEn.standard"
+  },
+  {
+    "이름": "아이패드 Pro 12.9인치 3세대",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/5rvADsFJFAbhDPqT.standard"
+  },
+  {
+    "이름": "아이패드 Pro 12.9\" 4th Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/EJ322TfSZx16Nq1A.standard"
+  },
+  {
+    "이름": "아이패드 Pro 12.9\" 5th Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/uZ2o1RhBBCJpegF5.standard"
+  },
+  {
+    "이름": "아이패드 Pro 12.9\" 6th Gen",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/qLpRTKJ3fCnjprLd.standard"
+  },
+  {
+    "이름": "아이패드 Pro 13\"",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ANKJv5gq2ZpKkInF.standard"
+  },
+  {
+    "이름": "아이패드 Air 1",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/SHY36sqLX3l6rklL.standard"
+  },
+  {
+    "이름": "아이패드 Air 2",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/OSvJ1yBKLXJHOgkG.standard"
+  },
+  {
+    "이름": "아이패드 Air 3",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/gfMGDZIUOSULZnTY.standard"
+  },
+  {
+    "이름": "아이패드 Air 4",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/iRMP3NnJVMWjHZRE.standard"
+  },
+  {
+    "이름": "아이패드 Air 5",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/CVBS1tXjr5To1Cn6.standard"
+  },
+  {
+    "이름": "아이패드 Air 6",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/wxfybdu2txla1ARl.standard"
+  },
+  {
+    "이름": "아이패드 Air 7",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/NNaYw1rPClgFfOTX.standard"
+  },
+  {
+    "이름": "아이패드 Mini 1st Generation",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/AUyYoTvgxKMq5kC2.standard"
+  },
+  {
+    "이름": "아이패드 Mini 2nd Generation",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/RacpAWWRuobmX5g4.standard"
+  },
+  {
+    "이름": "아이패드 Mini 3rd Generation",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/TAArJZTtFJ1GRh3Z.standard"
+  },
+  {
+    "이름": "아이패드 Mini 4th Generation",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/bXcCJhHA2HLbxrOU.standard"
+  },
+  {
+    "이름": "아이패드 Mini 5th Generation",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/LRYDgeQStpDgKNFj.standard"
+  },
+  {
+    "이름": "아이패드 Mini 6세대",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/NOmQGVjJFCJxQuDV.standard"
+  },
+  {
+    "이름": "아이패드 Mini 7th Generation",
+    "브랜드": "Apple",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/HOhfHd25mk6XnShB.standard"
+  },
+  {
+    "이름": "갤럭시 Tab S 10.5",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/HICke2akZqLQ6UGD.standard"
+  },
+  {
+    "이름": "갤럭시 Tab S6",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ZBSABVrIKdgL5UPC.standard"
+  },
+  {
+    "이름": "갤럭시 Tab S9 Plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/aePPRWCnMAaRjy1O.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S 8.4",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/FPYT3RQvxtP6jAZl.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S10 Plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Lc4CsxDSrqX2pDM2.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S10 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/CYhJQiMUuGYGWFjU.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S2 8.0",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/5ts2PcjRCVthxlPv.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S2 9.7",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/pZlY3WRuqJjfCVFi.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S2 9.7 (2015)",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/bldUBPkPvSVgVoCp.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S2 9.7 (2015) AT&T",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/CQ6CcVhtyNaqXslH.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S2 9.7 (2015) Verizon",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/3dygNPs1p5XvLgMA.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S3",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/qsXYV5WRd31FtTRM.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S6 Lite (2020)",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/OEjKFmqWKWH21OFR.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S7 & S8 Book Cover Keyboard",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/gRnJrVFZwHGkfrJ2.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S7 FE",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/DRe6MLPlLUpaJanT.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S7 Plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/TcoRXgYrNPqw64UK.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S7 Plus 5G",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/VfrQfRVdBNHsmX3Z.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S8 plus",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/XNMHGfhWMPF2InFj.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S9",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/SAisRLH5fU1leYnf.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Tab S9 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/X6HonIiQpPj6LbHD.standard"
+  },
+  {
+    "이름": "삼성 Tab S5e WiFi - LTE",
+    "브랜드": "Galaxy",
+    "기기유형코드": 2,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/DFRCeAQiUGJXNsRR.standard"
+  },
+  {
+    "이름": "15\" 맥북 Pro (Early 2006)",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/vPdIkfeZ6PyHM32H.standard"
+  },
+  {
+    "이름": "맥북 Pro 13\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/RInVprAZwWZoeryA.standard"
+  },
+  {
+    "이름": "맥북 Pro 14\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/nIonWakxkkGlFaQI.standard"
+  },
+  {
+    "이름": "맥북 Pro 15\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/qi6weLQwKQDud1rC.standard"
+  },
+  {
+    "이름": "맥북 Pro 16\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/FRnfWWLGa3Wct2TL.standard"
+  },
+  {
+    "이름": "맥북 Pro 17\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ei4mZ64oDrsYWZrx.standard"
+  },
+  {
+    "이름": "맥북 Air 11\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/YmcdJiTF1knrKWDt.standard"
+  },
+  {
+    "이름": "맥북 Air 13\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/a62Qu5bjkGFMR1Eq.standard"
+  },
+  {
+    "이름": "맥북 Air 15\"",
+    "브랜드": "Apple",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Mk5jDPgtbEkyYn3P.standard"
+  },
+  {
+    "이름": "맥북 Air 11\"",
+    "브랜드": "Galaxy",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/YmcdJiTF1knrKWDt.standard"
+  },
+  {
+    "이름": "맥북 Air 13\"",
+    "브랜드": "Galaxy",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/a62Qu5bjkGFMR1Eq.standard"
+  },
+  {
+    "이름": "맥북 Air 15\"",
+    "브랜드": "Galaxy",
+    "기기유형코드": 1,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Mk5jDPgtbEkyYn3P.standard"
+  },
+  {
+    "이름": "애플 워치 - 오리지널",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/wCfFmSRJC3J6PuSl.standard"
+  },
+  {
+    "이름": "애플 워치 - 시리즈 1",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/m6wrRcHojJD1uDRa.standard"
+  },
+  {
+    "이름": "애플 워치 - 시리즈 2",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/WgRRTBVissxG5mgB.standard"
+  },
+  {
+    "이름": "애플 워치 - 시리즈 3",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/FXXiVMZLvAuysRdK.standard"
+  },
+  {
+    "이름": "애플 워치 - Series 4",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/duT1rJjD5y3LMsAH.standard"
+  },
+  {
+    "이름": "애플 워치 - Series 5",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/oVYaJpN1epagOCrO.standard"
+  },
+  {
+    "이름": "애플 워치 - SE",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/s6eFrYZ4njgknQa1.standard"
+  },
+  {
+    "이름": "애플 워치 - Series 6",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/atPAUawA6tiKV3u5.standard"
+  },
+  {
+    "이름": "애플 워치 Series 7",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/GnKQ2AupaYT2eXMc.standard"
+  },
+  {
+    "이름": "애플 워치 - Series 8",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/XaLGECLmmN1ofGVj.standard"
+  },
+  {
+    "이름": "애플 워치 - SE 2",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/TSWRmbqP5rjxwxVK.standard"
+  },
+  {
+    "이름": "애플 워치 - Series 9",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/2oCrbnBJTYSKriZe.standard"
+  },
+  {
+    "이름": "애플 워치 Ultra",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/DP3n4kcYFjLfsXmP.standard"
+  },
+  {
+    "이름": "애플 워치 Ultra 2",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/qoXL5SKTFWeuF13a.standard"
+  },
+  {
+    "이름": "애플 워치 - Series 10",
+    "브랜드": "Apple",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/6IoIlZoqKVdAOOfG.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 Gear",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/urSBSZQKwv33DFEy.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/WoHHXtl1h4vIAoGB.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치 6 Classic",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/qCmp2sscl5w4FmsH.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치 Active",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/HZHAYTW3soMARFHc.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치 Active2",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/ISENGXHXoURt3fJP.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치 Ultra",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/YFtPkbPK5BficxNF.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치3",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/j3SU6rpbsKgwccVE.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치4",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/KXHZ3FTIZYBXRucO.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치4 Classic",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/EDJD1EuFExI1LlID.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치5",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/TrewMhrotvYNGRGQ.standard"
+  },
+  {
+    "이름": "삼성 갤럭시 워치7",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/YmoZ1qFLFAwIuIul.standard"
+  },
+  {
+    "이름": "삼성 Gear 2",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/AQDCSZNQmYX2Hn45.standard"
+  },
+  {
+    "이름": "삼성 Gear 2 Neo",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/oBIgTv5ts3PcMhBN.standard"
+  },
+  {
+    "이름": "삼성 Gear Fit",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/lMLJlMAQ6BKx1uVq.standard"
+  },
+  {
+    "이름": "삼성 Gear Fit 2 Pro",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/OYJBYmAtRie2qGGY.standard"
+  },
+  {
+    "이름": "삼성 Gear Fit2",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/bRPGh4XewBDRejP1.standard"
+  },
+  {
+    "이름": "삼성 Gear Live",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/BrMmYyCFq4PqnVuO.standard"
+  },
+  {
+    "이름": "삼성 Gear S",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/UXUSPb6qcPwgXNHP.standard"
+  },
+  {
+    "이름": "삼성 Gear S2",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/LiuZDdls2L3QMFgL.standard"
+  },
+  {
+    "이름": "삼성 Gear S2 3G",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/pK2KeX4FPWDMDW2o.standard"
+  },
+  {
+    "이름": "삼성 Gear S3",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/3pCwjbS2trMfmY3q.standard"
+  },
+  {
+    "이름": "삼성 Gear S3 Frontier",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/Cs4Q3HEWLXsjTtrT.standard"
+  },
+  {
+    "이름": "삼성 Gear Sport",
+    "브랜드": "Galaxy",
+    "기기유형코드": 3,
+    "이미지": "https://guide-images.cdn.ifixit.com/igi/N22uEbJrigcFuNiY.standard"
+  }
+]

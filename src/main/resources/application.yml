@@ -11,8 +11,16 @@ spring:
   config:
     import: optional:file:.env[.properties]
 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+
+#로컬 테스트_2
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/testdb
+#    username: root
+#    password: TestdbRoot
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+#  h2:
+#    console:
+#      enabled: true
