@@ -1,4 +1,4 @@
-package teamplace.pixi.config;
+package teamplace.pixi.util.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -8,12 +8,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -29,14 +27,13 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer configure() {
         return (web) -> web.ignoring()
-//                .requestMatchers(PathRequest.toH2Console())
+                //.requestMatchers(PathRequest.toH2Console())
                 .requestMatchers(new AntPathRequestMatcher("/static/**"));
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/users/signup").permitAll()
@@ -47,7 +44,6 @@ public class WebSecurityConfig {
                                 "/api-docs", "/api-docs/**", "/v3/api-docs/**",
                                 "/", "/users/logout"
                         ).permitAll()
-//                        .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .anyRequest().permitAll()
                 )
                 .build();

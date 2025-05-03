@@ -7,17 +7,10 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  config:
+    import: optional:file:.env[.properties]
 
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: ${SPRING_DATASOURCE_URL}
-#    username: ${SPRING_DATASOURCE_USERNAME}
-#    password: ${SPRING_DATASOURCE_PASSWORD}
-
-# 로컬 테스트용
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: root
 
 #로컬 테스트_2
 #  datasource:
