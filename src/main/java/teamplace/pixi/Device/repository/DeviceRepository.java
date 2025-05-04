@@ -11,4 +11,7 @@ import java.util.List;
 public interface DeviceRepository extends JpaRepository<Device, Long> {
     @Query("SELECT d FROM Device d WHERE d.deviceName LIKE %:name%")
     List<Device> findByNameLike(@Param("name") String name);
+
+    @Query("SELECT d FROM Device d WHERE REPLACE(LOWER(d.deviceName), ' ', '') = REPLACE(LOWER(:name), ' ', '')")
+    List<Device> findByExactDeviceNameWithoutSpacesIgnoreCase(@Param("name") String name);
 }

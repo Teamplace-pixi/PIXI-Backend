@@ -21,8 +21,8 @@ public class BoardService {
     private final DeviceRepository deviceRepository;
 
     public Board save(AddBoardRequest request) {
-        // deviceName을 기반으로 Device 조회
-        Device device = deviceRepository.findByNameLike(request.getDeviceName()).stream()
+        // 정확히 일치하는 deviceName으로 Device 조회
+        Device device = deviceRepository.findByExactDeviceNameWithoutSpacesIgnoreCase(request.getDeviceName()).stream()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름의 기기를 찾을 수 없습니다."));
 

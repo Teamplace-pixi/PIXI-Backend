@@ -29,39 +29,32 @@ public class Device {
     @Column(name = "device_brand")
     private String deviceBrand;
 
+    @Column(name = "display_price")
+    private int displayPrice;
 
-    public Device(String deviceName, Integer deviceType, String deviceImg, String deviceBrand) {
+    @Column(name = "back_price")
+    private int backPrice;
+
+    @Column(name = "camera_price")
+    private int cameraPrice;
+
+    @Column(name = "battery_price")
+    private int batteryPrice;
+
+    @Column(name = "main_price")
+    private int mainPrice;
+
+
+    public Device(String deviceName, Integer deviceType, String deviceImg, String deviceBrand,
+                  int displayPrice, int backPrice, int cameraPrice, int batteryPrice, int mainPrice) {
         this.deviceName = deviceName;
         this.deviceType = deviceType;
         this.deviceImg = deviceImg;
         this.deviceBrand = deviceBrand;
+        this.displayPrice = displayPrice;
+        this.backPrice = backPrice;
+        this.cameraPrice = cameraPrice;
+        this.batteryPrice = batteryPrice;
+        this.mainPrice = mainPrice;
     }
-
-    public Long getDeviceId() {
-        return deviceId;
-    }
-
-
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-
-    public Integer getDeviceType() {
-        return deviceType;
-    }
-
-
-
-    public String getDeviceImg() {
-        return deviceImg;
-    }
-
-
-    public String getDeviceBrand() {
-        return deviceBrand;
-    }
-
-
-
 }
