@@ -41,5 +41,12 @@ public class BoardService {
                 .map(BoardListViewResponse::new)
                 .toList();
     }
+
+    public List<BoardListViewResponse> getLatestBoards() {
+        List<Board> boards = boardRepository.findTop10ByOrderByCreatedAtDesc();
+        return boards.stream()
+                .map(BoardListViewResponse::new)
+                .toList();
+    }
 }
 

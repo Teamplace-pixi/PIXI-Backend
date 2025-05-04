@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findByDevice_DeviceId(Long deviceId);
+    List<Board> findTop10ByOrderByCreatedAtDesc();
 }
