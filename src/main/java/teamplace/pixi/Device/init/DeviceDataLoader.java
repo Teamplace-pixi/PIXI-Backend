@@ -30,7 +30,12 @@ public class DeviceDataLoader {
                             d.get이름(),
                             d.get기기유형코드(),
                             d.get이미지(),
-                            d.get브랜드()
+                            d.get브랜드(),
+                            d.get액정가격(),
+                            d.get후면가격(),
+                            d.get후면카메라가격(),
+                            d.get배터리가격(),
+                            d.get메인보드가격()
                     );
                     deviceRepository.save(device);
                 }
@@ -47,10 +52,20 @@ public class DeviceDataLoader {
         private String 브랜드;
         private Integer 기기유형코드;
         private String 이미지;
+        private Integer 액정가격;
+        private Integer 후면가격;
+        private Integer 후면카메라가격;
+        private Integer 배터리가격;
+        private Integer 메인보드가격;
 
         public String get이름() { return 이름; }
         public String get브랜드() { return 브랜드; }
         public Integer get기기유형코드() { return 기기유형코드; }
         public String get이미지() { return 이미지; }
+        public Integer get액정가격() { return 액정가격; }
+        public Integer get후면가격() { return 후면가격; }
+        public Integer get후면카메라가격() { return 후면카메라가격; }
+        public Integer get배터리가격() { return 배터리가격; }
+        public Integer get메인보드가격() { return 메인보드가격; }
     }
 }
