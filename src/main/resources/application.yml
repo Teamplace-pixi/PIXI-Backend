@@ -12,14 +12,6 @@ spring:
     import: optional:file:.env[.properties]
 
 
-#로컬 테스트_2
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/testdb
-#    username: root
-#    password: TestdbRoot
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-
-
 
 #  h2:
 #    console:
