@@ -17,6 +17,10 @@ spring:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
 
+  jwt:
+    issuer: sanhagteamplace@gmail.com
+    secret_key: teamplace-fixi
+
 
 #  h2:
 #    console:

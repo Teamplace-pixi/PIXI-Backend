@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/finder")
-public class FinderController {
+public class FinderApiController {
     private final BoardService boardService;
     private final DeviceService deviceService;
 

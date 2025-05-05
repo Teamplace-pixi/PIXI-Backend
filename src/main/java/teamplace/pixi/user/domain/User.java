@@ -60,7 +60,7 @@ public class User implements UserDetails {
 
     @Builder
     public User(String loginId, String password, String email, String nickname,
-                Boolean isSub, Integer rollId, Integer profileId, Integer aiCnt) {
+                Boolean isSub, Integer rollId, Integer profileId, Integer aiCnt, String auth) {
         this.loginId = loginId;
         this.password = password;
         this.email = email;

@@ -67,9 +67,11 @@ create table users (
 show tables;
 select * from device;
 select * from board;
+select * from refresh_token;
 
 truncate table board
-truncate table device]]></console>
+truncate table device
+truncate table users]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -80,6 +82,9 @@ truncate table device]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" dataset="fixi.refresh_token" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
