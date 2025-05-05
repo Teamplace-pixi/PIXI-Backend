@@ -1,4 +1,3 @@
-/*
 package teamplace.pixi.Device.init;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -70,4 +69,3 @@ public class DeviceDataLoader {
         public Integer get메인보드가격() { return 메인보드가격; }
     }
 }
-*/

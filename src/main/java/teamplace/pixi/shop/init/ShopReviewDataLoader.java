@@ -1,4 +1,3 @@
-/*
 package teamplace.pixi.shop.init;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -71,4 +70,3 @@ public class ShopReviewDataLoader {
 
 }
 
-*/
