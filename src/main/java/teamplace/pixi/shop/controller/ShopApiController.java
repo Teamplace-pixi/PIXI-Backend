@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import teamplace.pixi.shop.domain.Shop;
-import teamplace.pixi.shop.dto.ShopListRequest;
+import teamplace.pixi.shop.dto.ShopListViewResponse;
 import teamplace.pixi.shop.dto.ShopReviewListRequest;
 import teamplace.pixi.shop.service.ShopService;
 
@@ -19,7 +19,7 @@ public class ShopApiController {
 
     @Operation(summary = "수리업체 리스트 조회", description = "수리업체 리스트를 조회합니다")
     @GetMapping("")
-    public List<ShopListRequest> getShopList(@RequestParam("device_type") Integer type){
+    public List<ShopListViewResponse> getShopList(@RequestParam("device_type") Integer type){
         return shopService.getShopList(type);
     }
 
