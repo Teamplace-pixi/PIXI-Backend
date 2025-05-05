@@ -27,11 +27,21 @@ public class Board {
     private Long boardId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "device_id")
     private Device device;
 
     @Column(name = "board_title", nullable = false)
     private String boardTitle;
+
+    @Column(name = "board_content", nullable = false)
+    private String boardContent;
+
+    @Column(name = "board_loc", nullable = false)
+    private String boardLoc;
 
     @Column(name = "board_cost", nullable = false)
     private int boardCost;
@@ -49,10 +59,13 @@ public class Board {
     private String boardStatus;
 
     @Builder
-    public Board(Device device, String boardTitle, int boardCost,
+    public Board(User user, Device device, String boardTitle, String boardContent, String boardLoc, int boardCost,
                  LocalDate boardDate, String boardStatus) {
+        this.user = user;
         this.device = device;
         this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardLoc = boardLoc;
         this.boardCost = boardCost;
         this.boardDate = boardDate;
         this.boardStatus = boardStatus;

@@ -7,14 +7,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import teamplace.pixi.Device.dto.PartListViewResponse;
 import teamplace.pixi.board.domain.Board;
 import teamplace.pixi.board.dto.AddBoardRequest;
+import teamplace.pixi.board.dto.BoardViewResponse;
 import teamplace.pixi.board.service.BoardService;
-import teamplace.pixi.util.error.ErrorResponse;
 import teamplace.pixi.util.error.SuccessResponse;
 
 @RestController
@@ -32,5 +30,11 @@ public class BoardApiController {
     public ResponseEntity<Board> addBoard(@RequestBody AddBoardRequest request) {
         Board savedBoard = boardService.save(request);
         return ResponseEntity.ok(savedBoard);
+    }
+
+    @Operation(summary = "구해요 본문 조회", description = "구해요 본문 글을 조회합니다")
+    @GetMapping("/board_id={boardId}")
+    public BoardViewResponse getBoardView(@PathVariable Long boardId) {
+        return boardService.getBoardView(boardId);
     }
 }

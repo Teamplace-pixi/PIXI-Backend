@@ -28,8 +28,8 @@ public class UserService implements UserDetailsService {
                 .email(request.getEmail())
                 .nickname(request.getNickname())
                 .isSub(false)
-                .rollId(1)
-                .profileId(1)
+                .rollId(0)
+                .profileId(0)
                 .aiCnt(5)
                 .build();
 
