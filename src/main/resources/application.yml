@@ -13,6 +13,11 @@ cloud:
       auto: false
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # 업로드할 수 있는 개별 파일의 최대 크기. 기본 1MB
+      max-request-size: 10MB # multipart/form-data 요청의 최대 허용 크기. 기본 10MB
+
   jpa:
 #    hibernate:
 #      ddl-auto: update
