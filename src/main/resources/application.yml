@@ -1,13 +1,14 @@
 spring:
   jpa:
-    hibernate:
-      ddl-auto: update
+#    hibernate:
+#      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
   config:
     import: optional:file:.env[.properties]
 
@@ -20,6 +21,7 @@ spring:
   jwt:
     issuer: sanhagteamplace@gmail.com
     secret_key: teamplace-fixi
+
 
 
 #  h2:

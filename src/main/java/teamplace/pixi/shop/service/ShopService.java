@@ -38,6 +38,15 @@ public class ShopService {
         return dto;
     }
 
+    //수리업체 홈 리스트
+    public List<ShopListRequest> getShopListAtHome(){
+        List<Shop> shops = shopRepository.getShopAtHome();
+        return shops.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+
     //수리업체 상세
     public Optional<Shop> getShop(Long id){
         return shopRepository.findByShopId(id);
@@ -62,5 +71,7 @@ public class ShopService {
         dto.setReviewDate(shopReview.getCreatedAt());
         return dto;
     }
+
+
 
 }
