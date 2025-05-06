@@ -1,4 +1,23 @@
+cloud:
+  config:
+    import: optional:file:.env[.properties]
+  aws:
+    credentials:
+      access-key: ${ACCESS_KEY}
+      secret-key: ${SECRET_KEY}
+    region:
+      static: ap-northeast-2  # 버킷의 리전
+    s3:
+      bucket: fixi-s3-bucket    # 버킷 이름
+    stack:
+      auto: false
+
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # 업로드할 수 있는 개별 파일의 최대 크기. 기본 1MB
+      max-request-size: 10MB # multipart/form-data 요청의 최대 허용 크기. 기본 10MB
+
   jpa:
 #    hibernate:
 #      ddl-auto: update
@@ -21,9 +40,3 @@ spring:
   jwt:
     issuer: sanhagteamplace@gmail.com
     secret_key: teamplace-fixi
-
-
-
-#  h2:
-#    console:
-#      enabled: true
