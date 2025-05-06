@@ -23,7 +23,7 @@ public class DeviceDataLoader {
     public CommandLineRunner loadDeviceData() {
         return args -> {
             ObjectMapper mapper = new ObjectMapper();
-            InputStream inputStream = getClass().getResourceAsStream("/디바이스_전체_한국어_변환.json");
+            InputStream inputStream = getClass().getResourceAsStream("/device.json");
             try {
                 List<DeviceJson> devices = mapper.readValue(inputStream, new TypeReference<>() {});
                 for (DeviceJson d : devices) {

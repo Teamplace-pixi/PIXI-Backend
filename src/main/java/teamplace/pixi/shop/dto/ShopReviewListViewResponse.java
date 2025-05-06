@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ShopReviewListRequest {
+public class ShopReviewListViewResponse {
     private Long reviewId;
     private Integer reviewStar;
     private String reviewTitle;
