@@ -14,4 +14,6 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
 
     @Query("SELECT d FROM Device d WHERE REPLACE(LOWER(d.deviceName), ' ', '') = REPLACE(LOWER(:name), ' ', '')")
     List<Device> findByExactDeviceNameWithoutSpacesIgnoreCase(@Param("name") String name);
+
+    List<Device> findByDeviceTypeAndDeviceBrand(Integer deviceType, String deviceBrand);
 }
