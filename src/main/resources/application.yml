@@ -1,3 +1,17 @@
+cloud:
+  config:
+    import: optional:file:.env[.properties]
+  aws:
+    credentials:
+      access-key: ${ACCESS_KEY}
+      secret-key: ${SECRET_KEY}
+    region:
+      static: ap-northeast-2  # 버킷의 리전
+    s3:
+      bucket: fixi-s3-bucket    # 버킷 이름
+    stack:
+      auto: false
+
 spring:
   jpa:
 #    hibernate:
@@ -21,9 +35,3 @@ spring:
   jwt:
     issuer: sanhagteamplace@gmail.com
     secret_key: teamplace-fixi
-
-
-
-#  h2:
-#    console:
-#      enabled: true
