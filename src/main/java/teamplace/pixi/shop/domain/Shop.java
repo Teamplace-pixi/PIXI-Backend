@@ -2,7 +2,6 @@ package teamplace.pixi.shop.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import teamplace.pixi.shop.dto.ShopListRequest;
 
 @Entity
 @Table(name = "shop")
