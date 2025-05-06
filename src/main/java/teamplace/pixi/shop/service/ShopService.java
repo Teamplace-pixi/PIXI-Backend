@@ -7,7 +7,7 @@ import teamplace.pixi.Device.repository.DeviceRepository;
 import teamplace.pixi.shop.domain.Shop;
 import teamplace.pixi.shop.domain.ShopReview;
 import teamplace.pixi.shop.dto.ShopListViewResponse;
-import teamplace.pixi.shop.dto.ShopReviewListRequest;
+import teamplace.pixi.shop.dto.ShopReviewListViewResponse;
 import teamplace.pixi.shop.repository.ShopRepository;
 import teamplace.pixi.shop.repository.ShopReviewRepository;
 
@@ -63,21 +63,30 @@ public class ShopService {
                 .collect(Collectors.toList());
     }
 
+    //수리업체 홈 리스트
+    public List<ShopListViewResponse> getShopListAtHome(){
+        List<Shop> shops = shopRepository.getShopAtHome();
+        return shops.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+
     //수리업체 상세
     public Optional<Shop> getShop(Long id){
         return shopRepository.findByShopId(id);
     }
 
     //수리업체 후기 리스트
-    public List<ShopReviewListRequest> getShopReviews(Long shopId){
+    public List<ShopReviewListViewResponse> getShopReviews(Long shopId){
         List<ShopReview> reviews = shopReviewRepository.findReviewsByShopId(shopId);
         return reviews.stream()
                 .map(this::ReviewconvertToDto)
                 .collect(Collectors.toList());
     }
 
-    private ShopReviewListRequest ReviewconvertToDto(ShopReview shopReview) {
-        ShopReviewListRequest dto = new ShopReviewListRequest();
+    private ShopReviewListViewResponse ReviewconvertToDto(ShopReview shopReview) {
+        ShopReviewListViewResponse dto = new ShopReviewListViewResponse();
         dto.setReviewId(shopReview.getReviewId());
         dto.setReviewStar(shopReview.getReviewStar());
         dto.setReviewTitle(shopReview.getReviewTitle());
@@ -87,5 +96,7 @@ public class ShopService {
         dto.setReviewDate(shopReview.getCreatedAt());
         return dto;
     }
+
+
 
 }

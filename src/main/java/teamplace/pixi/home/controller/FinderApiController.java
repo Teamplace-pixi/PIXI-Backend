@@ -26,20 +26,20 @@ public class FinderApiController {
 
     @Operation(summary = "기기별 부품 가격 목록", description = "기기 아이디로 부품 가격 목록을 조회합니다")
     @GetMapping("/partList/device_id={deviceId}")
-    public PartListViewResponse getPartList(@PathVariable Long deviceId) {
+    public PartListViewResponse getPartList(@PathVariable("deviceId") Long deviceId) {
         return deviceService.getPartListView(deviceId);
     }
 
     @Operation(summary = "기기별 수리업체 목록", description = "기기 아이디로 수리 가능 업체 목록을 조회합니다")
     @GetMapping("/shopList/device_id={deviceId}")
-    public ResponseEntity<List<ShopListViewResponse>> getShopListByDeviceId(@PathVariable Long deviceId) {
+    public ResponseEntity<List<ShopListViewResponse>> getShopListByDeviceId(@PathVariable("deviceId") Long deviceId) {
         List<ShopListViewResponse> shopList = shopService.getShopsListByDeviceId(deviceId);
         return ResponseEntity.ok(shopList);
     }
 
     @Operation(summary = "기기별 구해요 목록", description = "기기 아이디로 모집 중인 구해요 목록을 조회합니다")
     @GetMapping("/boardList/device_id={deviceId}")
-    public ResponseEntity<List<BoardListViewResponse>> getBoardsByDeviceId(@PathVariable Long deviceId) {
+    public ResponseEntity<List<BoardListViewResponse>> getBoardsByDeviceId(@PathVariable("deviceId") Long deviceId) {
         List<BoardListViewResponse> boards = boardService.getBoardsByDeviceId(deviceId);
         return ResponseEntity.ok(boards);
     }
