@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teamplace.pixi.Device.dto.PartListViewResponse;
 import teamplace.pixi.board.domain.Board;
 import teamplace.pixi.board.dto.AddBoardRequest;
 import teamplace.pixi.board.dto.BoardViewResponse;
