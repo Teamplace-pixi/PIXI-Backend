@@ -1,8 +1,8 @@
 package teamplace.pixi.board.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import teamplace.pixi.Device.domain.Device;
 import teamplace.pixi.Device.repository.DeviceRepository;
 import teamplace.pixi.board.domain.Board;
@@ -11,28 +11,25 @@ import teamplace.pixi.board.dto.BoardListViewResponse;
 import teamplace.pixi.board.dto.BoardViewResponse;
 import teamplace.pixi.board.repository.BoardRepository;
 import teamplace.pixi.user.domain.User;
-import teamplace.pixi.user.repository.UserRepository;
+import teamplace.pixi.user.service.UserService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class BoardService {
 
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
-    private static final String STATUS_RECRUITING = "모집중";
-    private static final String ERROR_USER_NOT_FOUND = "로그인된 사용자를 찾을 수 없습니다.";
-    private static final String ERROR_DEVICE_NOT_FOUND = "해당 이름의 기기를 찾을 수 없습니다.";
-    private static final String ERROR_BOARD_NOT_FOUND = "존재하지 않는 구해요 글입니다.";
-
     private final BoardRepository boardRepository;
-    private final UserRepository userRepository;
     private final DeviceRepository deviceRepository;
+    private final UserService userService;
+
+
 
     public Board save(AddBoardRequest request) {
-        User user = getCurrentUser();
+        User user = userService.getCurrentUser();
         Device device = findDeviceByName(request.getDeviceName());
         Board board = createBoard(request, user, device);
         return boardRepository.save(board);
@@ -42,7 +39,7 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 구해요 글입니다."));
 
-        User currentUser = getCurrentUser(); // 로그인 사용자 정보 가져오기
+        User currentUser = userService.getCurrentUser(); // 로그인 사용자 정보 가져오기
         return new BoardViewResponse(board, currentUser);
     }
 
@@ -58,20 +55,20 @@ public class BoardService {
                 .toList();
     }
 
-    private User getCurrentUser() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByLoginId(username)
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_USER_NOT_FOUND));
-    }
-
     private Device findDeviceByName(String deviceName) {
         return deviceRepository.findByExactDeviceNameWithoutSpacesIgnoreCase(deviceName).stream()
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_DEVICE_NOT_FOUND));
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 기기를 찾을 수 없습니다."));
+    }
+
+    public List<BoardListViewResponse> getMyBoards(User user) {
+        return boardRepository.findAllByUser(user).stream()
+                .map(BoardListViewResponse::new)
+                .toList();
     }
 
     private Board createBoard(AddBoardRequest request, User user, Device device) {
-        LocalDate boardDate = LocalDate.parse(request.getBoardDate(), DateTimeFormatter.ofPattern(DATE_FORMAT));
+        LocalDate boardDate = LocalDate.parse(request.getBoardDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         return Board.builder()
                 .user(user)
@@ -81,7 +78,7 @@ public class BoardService {
                 .boardLoc(request.getBoardLoc())
                 .boardCost(request.getBoardCost())
                 .boardDate(boardDate)
-                .boardStatus(STATUS_RECRUITING)
+                .boardStatus("모집중")
                 .build();
     }
 }
