@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddBoardRequest {
     private String boardTitle;
+    private String boardContent;
+    private String boardLoc;
     private int boardCost;
-    private String boardDate; // "yyyy-MM-dd HH:mm"
+    private String boardDate; // "yyyy-MM-dd"
     private String deviceName;
 }
