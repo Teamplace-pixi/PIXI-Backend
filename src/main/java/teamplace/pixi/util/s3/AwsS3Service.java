@@ -25,28 +25,38 @@ public class AwsS3Service {
     private String bucket;
 
     private final AmazonS3 amazonS3;
+    private final ImageRepository imageRepository;
 
-    public List<String> uploadFile(List<MultipartFile> multipartFiles){
-        List<String> fileNameList = new ArrayList<>();
+    public List<Image> uploadFile(List<MultipartFile> multipartFiles) {
+        List<Image> imageList = new ArrayList<>();
 
-        // forEach 구문을 통해 multipartFiles 리스트로 넘어온 파일들을 순차적으로 fileNameList 에 추가
-        multipartFiles.forEach(file -> {
+        for (MultipartFile file : multipartFiles) {
             String fileName = createFileName(file.getOriginalFilename());
-            ObjectMetadata objectMetadata = new ObjectMetadata();
-            objectMetadata.setContentLength(file.getSize());
-            objectMetadata.setContentType(file.getContentType());
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentLength(file.getSize());
+            metadata.setContentType(file.getContentType());
 
-            try(InputStream inputStream = file.getInputStream()){
-                amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata)
+            try (InputStream inputStream = file.getInputStream()) {
+                amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, metadata)
                         .withCannedAcl(CannedAccessControlList.PublicRead));
-            } catch (IOException e){
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
+            } catch (IOException e) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드 실패");
             }
-            fileNameList.add(fileName);
 
-        });
+            String fileUrl = amazonS3.getUrl(bucket, fileName).toString();
 
-        return fileNameList;
+            // DB에 저장
+            Image savedImage = imageRepository.save(
+                    Image.builder()
+                            .fileName(fileName)
+                            .fileUrl(fileUrl)
+                            .build()
+            );
+
+            imageList.add(savedImage);
+        }
+
+        return imageList;
     }
 
     // 파일명을 난수화하기 위해 UUID 를 활용하여 난수를 돌린다.
@@ -63,9 +73,9 @@ public class AwsS3Service {
         }
     }
 
-
-    public void deleteFile(String fileName){
-        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
-        System.out.println(bucket);
+    public void deleteFile(List<String> fileNames){
+        fileNames.forEach(fileName ->
+                amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName))
+        );
     }
 }
