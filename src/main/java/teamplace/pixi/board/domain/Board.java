@@ -11,9 +11,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 import teamplace.pixi.Device.domain.Device;
 import teamplace.pixi.user.domain.User;
+import teamplace.pixi.util.s3.Image;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "board")
@@ -57,6 +60,16 @@ public class Board {
 
     @Column(name = "board_status")
     private String boardStatus;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images = new ArrayList<>();
+
+    public void addImages(List<Image> images) {
+        for (Image image : images) {
+            image.setBoard(this);
+            this.images.add(image);
+        }
+    }
 
     @Builder
     public Board(User user, Device device, String boardTitle, String boardContent, String boardLoc, int boardCost,
