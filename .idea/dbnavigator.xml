@@ -74,6 +74,7 @@ select * from board;
 select * from refresh_token;
 select * from users;
 select * from image;
+select * from shop;
 
 CREATE TABLE board (
     board_id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -109,6 +110,7 @@ CREATE TABLE board (
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="e99d9729-de5d-4787-980b-7704fa2ad552" dataset="fixi.shop" active-filter-id="" />
     <filter-actions connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" dataset="fixi.refresh_token" active-filter-id="" />
+    <filter-actions connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" dataset="fixi.shop" active-filter-id="" />
     <filter-actions connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" dataset="fixi.users" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">

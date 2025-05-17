@@ -27,7 +27,28 @@ public class AwsS3Service {
     private final AmazonS3 amazonS3;
     private final ImageRepository imageRepository;
 
-    public List<Image> uploadFile(List<MultipartFile> multipartFiles) {
+    public Image uploadSingleFile(MultipartFile file) {
+        String fileName = createFileName(file.getOriginalFilename());
+        String fileUrl = amazonS3.getUrl(bucket, fileName).toString();
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(file.getSize());
+        metadata.setContentType(file.getContentType());
+
+        try (InputStream inputStream = file.getInputStream()) {
+            amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, metadata)
+                    .withCannedAcl(CannedAccessControlList.PublicRead));
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드 실패");
+        }
+
+        return Image.builder()
+                .fileName(fileName)
+                .fileUrl(fileUrl)
+                .build();
+    }
+
+    public List<Image> uploadMultiFile(List<MultipartFile> multipartFiles) {
         List<Image> imageList = new ArrayList<>();
 
         for (MultipartFile file : multipartFiles) {

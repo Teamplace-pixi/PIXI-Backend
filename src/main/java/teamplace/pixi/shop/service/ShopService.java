@@ -2,14 +2,22 @@ package teamplace.pixi.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.Device.domain.Device;
 import teamplace.pixi.Device.repository.DeviceRepository;
 import teamplace.pixi.shop.domain.Shop;
 import teamplace.pixi.shop.domain.ShopReview;
+import teamplace.pixi.shop.dto.AddShopRequest;
 import teamplace.pixi.shop.dto.ShopListViewResponse;
 import teamplace.pixi.shop.dto.ShopReviewListViewResponse;
 import teamplace.pixi.shop.repository.ShopRepository;
 import teamplace.pixi.shop.repository.ShopReviewRepository;
+import teamplace.pixi.user.domain.User;
+import teamplace.pixi.user.repository.UserRepository;
+import teamplace.pixi.user.service.UserService;
+import teamplace.pixi.util.s3.AwsS3Service;
+import teamplace.pixi.util.s3.Image;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +30,9 @@ public class ShopService {
     private final ShopRepository shopRepository;
     private final ShopReviewRepository shopReviewRepository;
     private final DeviceRepository deviceRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final AwsS3Service awsS3Service;
 
     //수리업체 리스트
     public List<ShopListViewResponse> getShopList(Integer type){
@@ -97,6 +108,37 @@ public class ShopService {
         return dto;
     }
 
+    @Transactional
+    public Shop save(AddShopRequest request, MultipartFile certificationFile, MultipartFile thumbFile) {
+        User user = userService.getCurrentUser();
+        Image certificationImage = awsS3Service.uploadSingleFile(certificationFile);
+        Image thumbImage = awsS3Service.uploadSingleFile(thumbFile);
 
+        request.setShopCertification(certificationImage.getFileUrl());
+        request.setThumb(thumbImage.getFileUrl());
 
+        Shop shop = createShop(request, user);
+        Shop savedShop = shopRepository.save(shop);
+
+        if (user.getRollId() == 0) {
+            user.updateRollId(1);
+            userRepository.save(user);
+        }
+
+        return savedShop;
+    }
+
+    private Shop createShop(AddShopRequest request, User user) {
+        return Shop.builder()
+                .userId(user.getUserId())
+                .shopName(request.getShopName())
+                .shopLoc(request.getShopLoc())
+                .shopOpenTime(request.getShopOpenTime())
+                .shopCall(request.getShopCall())
+                .shopDetail(request.getShopDetail())
+                .shopDevice(request.getShopDevice())
+                .shopCertification(request.getShopCertification())
+                .thumb(request.getThumb())
+                .build();
+    }
 }

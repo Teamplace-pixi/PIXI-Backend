@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import teamplace.pixi.board.domain.Board;
+import teamplace.pixi.shop.domain.Shop;
 
 @Entity
 @Table(name = "image")
@@ -29,7 +30,6 @@ public class Image {
         this.fileName = fileName;
         this.fileUrl = fileUrl;
     }
-
     public void setBoard(Board board) {
         this.board = board;
     }
