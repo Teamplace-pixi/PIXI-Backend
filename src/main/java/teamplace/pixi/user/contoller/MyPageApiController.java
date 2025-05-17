@@ -4,8 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.board.dto.BoardListViewResponse;
 import teamplace.pixi.board.service.BoardService;
+import teamplace.pixi.shop.dto.AddShopRequest;
+import teamplace.pixi.shop.service.ShopService;
 import teamplace.pixi.user.domain.User;
 import teamplace.pixi.user.dto.MyPageEditResponse;
 import teamplace.pixi.user.dto.MyPageResponse;
@@ -22,6 +25,7 @@ public class MyPageApiController {
 
     private final UserService userService;
     private final BoardService boardService;
+    private final ShopService shopService;
 
     @Operation(summary = "마이페이지 정보 조회", description = "현재 로그인한 사용자의 마이페이지 정보를 조회합니다.")
     @GetMapping
@@ -63,5 +67,16 @@ public class MyPageApiController {
         return ResponseEntity.ok(new MyPageSetupResponse(
                 user.getProfileId(), user.getNickname()
         ));
+    }
+
+    @Operation(summary = "마이페이지 수리업체 등록", description = "현재 로그인한 사용자를 일반 유저에서 수리업체로 등록합니다.")
+    @PostMapping("/shop")
+    public ResponseEntity<?> createShop(
+            @RequestPart("shop") AddShopRequest request,
+            @RequestPart("shopCertification") MultipartFile certificationFile,
+            @RequestPart("thumb") MultipartFile thumbFile
+    ) {
+        shopService.save(request, certificationFile, thumbFile);
+        return ResponseEntity.ok().build();
     }
 }

@@ -44,8 +44,4 @@ public class Shop {
     @Column(name = "thumb", columnDefinition = "TEXT")
     private String thumb;
 
-
-
-
-
 }

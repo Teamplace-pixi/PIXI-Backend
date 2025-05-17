@@ -20,11 +20,9 @@ import teamplace.pixi.util.s3.ImageRepository;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class BoardService {
 
     private final BoardRepository boardRepository;
@@ -37,7 +35,7 @@ public class BoardService {
     public Board save(AddBoardRequest request, List<MultipartFile> multipartFiles) {
         User user = userService.getCurrentUser();
         Device device = findDeviceByName(request.getDeviceName());
-        List<Image> uploadedImages = awsS3Service.uploadFile(multipartFiles);
+        List<Image> uploadedImages = awsS3Service.uploadMultiFile(multipartFiles);
 
         Board board = createBoard(request, user, device);
         for (Image image : uploadedImages) {
