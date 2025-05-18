@@ -2,26 +2,47 @@ package teamplace.pixi.Chat.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.juli.logging.Log;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import teamplace.pixi.Chat.domain.Chat;
 import teamplace.pixi.Chat.dto.AiChatRequest;
 import teamplace.pixi.Chat.dto.AiChatResponse;
+import teamplace.pixi.Chat.dto.ChatMessageDto;
+import teamplace.pixi.Chat.repository.ChatRepository;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.logging.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AiService {
 
-    private static final String FASTAPI_URL = "http://localhost:8000/chat";
+    private static final String FASTAPI_URL = "http://43.203.246.125:8000/ai/chat";
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ChatRepository chatRepository;
 
     public AiChatResponse sendToFastApi(AiChatRequest dto) {
         try {
-            // 1. URL 연결
+            // 0. 유저 메세지 저장
+            Chat userMessage = Chat.builder()
+                    .userId(dto.getUserId())
+                    .isUser(true)
+                    .content(dto.getMessage())
+                    .timestamp(LocalDateTime.now())
+                    .build();
+            chatRepository.save(userMessage);
+
+            // 1. FastAPI 서버 연결 및 전송
             URL url = new URL(FASTAPI_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -37,6 +58,10 @@ public class AiService {
                 os.write(input, 0, input.length);
             }
 
+            int responseCode = conn.getResponseCode();
+            if(responseCode !=200){
+                return new AiChatResponse("FastAPI 서버 오류" + responseCode, null);
+            }
             // 4. 응답 읽기
             StringBuilder response = new StringBuilder();
             try (BufferedReader br = new BufferedReader(
@@ -47,12 +72,37 @@ public class AiService {
                 }
             }
 
-            // 5. JSON 응답을 AiChatResponse로 변환
-            return objectMapper.readValue(response.toString(), AiChatResponse.class);
+            // 4. JSON 응답 파싱
+            AiChatResponse aiResponse = objectMapper.readValue(response.toString(), AiChatResponse.class);
+
+            // 5. 챗봇 메시지 저장
+            Chat aiMessage = Chat.builder()
+                    .userId(dto.getUserId())
+                    .isUser(false)
+                    .content(aiResponse.getReply())
+                    .timestamp(LocalDateTime.now())
+                    .build();
+            chatRepository.save(aiMessage);
+
+            return aiResponse;
+
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("FastAPI 연결 실패: {}", e.getMessage(),e);
             return new AiChatResponse("AI 서버 연결 실패", null);
         }
     }
+
+    //대화 이력 조회 메서드
+    public List<ChatMessageDto> getChatHistory(Long userId) {
+        return chatRepository.findByUserIdOrderByTimestampAsc(userId)
+                .stream()
+                .map(chat -> ChatMessageDto.builder()
+                        .content(chat.getContent())
+                        .isUser(chat.getIsUser())
+                        .timestamp(chat.getTimestamp())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
 }

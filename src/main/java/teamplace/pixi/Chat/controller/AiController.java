@@ -9,7 +9,7 @@ import teamplace.pixi.Chat.service.AiService;
 
 //RestApi의 엔드포인트
 @RestController
-// /api/chat 으로 Post할 수 있게 경로 설정
+// /ai/chat 으로 Post할 수 있게 경로 설정
 @RequestMapping("/ai/chat")
 @RequiredArgsConstructor
 public class AiController {
