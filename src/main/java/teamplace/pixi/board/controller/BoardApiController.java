@@ -8,12 +8,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teamplace.pixi.Device.dto.PartListViewResponse;
+import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.board.domain.Board;
 import teamplace.pixi.board.dto.AddBoardRequest;
 import teamplace.pixi.board.dto.BoardViewResponse;
 import teamplace.pixi.board.service.BoardService;
 import teamplace.pixi.util.error.SuccessResponse;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,9 +29,18 @@ public class BoardApiController {
                     content = @Content(schema = @Schema(implementation = SuccessResponse.class))),
     })
     @PostMapping
-    public ResponseEntity<Board> addBoard(@RequestBody AddBoardRequest request) {
-        Board savedBoard = boardService.save(request);
-        return ResponseEntity.ok(savedBoard);
+    public ResponseEntity<?> createBoard(
+            @RequestPart("board") AddBoardRequest request,
+            @RequestPart(value = "multipartFiles", required = false) List<MultipartFile> multipartFiles
+    ) {
+        boardService.save(request, multipartFiles);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/board_id={boardId}")
+    public ResponseEntity<?> deleteBoard(@PathVariable Long boardId) {
+        boardService.delete(boardId);
+        return ResponseEntity.noContent().build();
     }
 
     @Operation(summary = "구해요 본문 조회", description = "구해요 본문 글을 조회합니다")

@@ -1,8 +1,9 @@
 package teamplace.pixi.board.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.Device.domain.Device;
 import teamplace.pixi.Device.repository.DeviceRepository;
 import teamplace.pixi.board.domain.Board;
@@ -11,7 +12,10 @@ import teamplace.pixi.board.dto.BoardListViewResponse;
 import teamplace.pixi.board.dto.BoardViewResponse;
 import teamplace.pixi.board.repository.BoardRepository;
 import teamplace.pixi.user.domain.User;
-import teamplace.pixi.user.repository.UserRepository;
+import teamplace.pixi.user.service.UserService;
+import teamplace.pixi.util.s3.AwsS3Service;
+import teamplace.pixi.util.s3.Image;
+import teamplace.pixi.util.s3.ImageRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,28 +25,46 @@ import java.util.List;
 @Service
 public class BoardService {
 
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
-    private static final String STATUS_RECRUITING = "모집중";
-    private static final String ERROR_USER_NOT_FOUND = "로그인된 사용자를 찾을 수 없습니다.";
-    private static final String ERROR_DEVICE_NOT_FOUND = "해당 이름의 기기를 찾을 수 없습니다.";
-    private static final String ERROR_BOARD_NOT_FOUND = "존재하지 않는 구해요 글입니다.";
-
     private final BoardRepository boardRepository;
-    private final UserRepository userRepository;
     private final DeviceRepository deviceRepository;
+    private final UserService userService;
+    private final AwsS3Service awsS3Service;
+    private final ImageRepository imageRepository;
 
-    public Board save(AddBoardRequest request) {
-        User user = getCurrentUser();
+    @Transactional
+    public Board save(AddBoardRequest request, List<MultipartFile> multipartFiles) {
+        User user = userService.getCurrentUser();
         Device device = findDeviceByName(request.getDeviceName());
+        List<Image> uploadedImages = awsS3Service.uploadMultiFile(multipartFiles);
+
         Board board = createBoard(request, user, device);
+        for (Image image : uploadedImages) {
+            image.setBoard(board);
+        }
+
         return boardRepository.save(board);
     }
+
+    @Transactional
+    public void delete(Long boardId) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
+
+        List<String> fileNames = board.getImages().stream()
+                .map(Image::getFileName)
+                .toList();
+
+        awsS3Service.deleteFile(fileNames);
+        imageRepository.deleteAll(board.getImages());
+        boardRepository.delete(board);
+    }
+
 
     public BoardViewResponse getBoardView(Long boardId) {
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 구해요 글입니다."));
 
-        User currentUser = getCurrentUser(); // 로그인 사용자 정보 가져오기
+        User currentUser = userService.getCurrentUser();
         return new BoardViewResponse(board, currentUser);
     }
 
@@ -58,20 +80,20 @@ public class BoardService {
                 .toList();
     }
 
-    private User getCurrentUser() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByLoginId(username)
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_USER_NOT_FOUND));
+    public List<BoardListViewResponse> getMyBoards(User user) {
+        return boardRepository.findAllByUser(user).stream()
+                .map(BoardListViewResponse::new)
+                .toList();
     }
 
     private Device findDeviceByName(String deviceName) {
         return deviceRepository.findByExactDeviceNameWithoutSpacesIgnoreCase(deviceName).stream()
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_DEVICE_NOT_FOUND));
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 기기를 찾을 수 없습니다."));
     }
 
     private Board createBoard(AddBoardRequest request, User user, Device device) {
-        LocalDate boardDate = LocalDate.parse(request.getBoardDate(), DateTimeFormatter.ofPattern(DATE_FORMAT));
+        LocalDate boardDate = LocalDate.parse(request.getBoardDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         return Board.builder()
                 .user(user)
@@ -81,7 +103,7 @@ public class BoardService {
                 .boardLoc(request.getBoardLoc())
                 .boardCost(request.getBoardCost())
                 .boardDate(boardDate)
-                .boardStatus(STATUS_RECRUITING)
+                .boardStatus("모집중")
                 .build();
     }
 }

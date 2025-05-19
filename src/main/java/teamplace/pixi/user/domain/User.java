@@ -41,6 +41,9 @@ public class User implements UserDetails {
     @Column(name = "nickname", nullable = false, unique = true)
     private String nickname;
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "is_sub", nullable = false)
     private boolean isSub;
 
@@ -59,21 +62,40 @@ public class User implements UserDetails {
 
 
     @Builder
-    public User(String loginId, String password, String email, String nickname,
+    public User(String loginId, String password, String email, String nickname, String address,
                 Boolean isSub, Integer rollId, Integer profileId, Integer aiCnt, String auth) {
         this.loginId = loginId;
         this.password = password;
         this.email = email;
         this.nickname = nickname;
+        this.address = address;
         this.isSub = isSub;
         this.rollId = rollId;
         this.profileId = profileId;
         this.aiCnt = aiCnt;
     }
 
+    // Id 변경
+    public User updateLoginId(String loginId) {
+        this.loginId = loginId;
+        return this;
+    }
+
+    // 비밀번호 변경
+    public User updatePassword(String password) {
+        this.password = password;
+        return this;
+    }
+
     // 닉네임 변경
     public User updateNickname(String nickname) {
         this.nickname = nickname;
+        return this;
+    }
+
+    // 주소 변경
+    public User updateAddress(String address) {
+        this.address = address;
         return this;
     }
 

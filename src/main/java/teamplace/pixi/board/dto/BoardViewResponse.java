@@ -3,8 +3,11 @@ package teamplace.pixi.board.dto;
 import lombok.Getter;
 import teamplace.pixi.board.domain.Board;
 import teamplace.pixi.user.domain.User;
+import teamplace.pixi.util.s3.Image;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class BoardViewResponse {
@@ -12,10 +15,11 @@ public class BoardViewResponse {
     private final String boardContent;
     private final String boardLoc;
     private final int boardCost;
-    private final String boardDate; // "yyyy-MM-dd"
+    private final String boardDate;
     private final String deviceName;
     private final String nickname;
     private final int rollId;
+    private final List<String> imageUrls;
 
     public BoardViewResponse(Board board, User currentUser) {
         this.boardTitle = board.getBoardTitle();
@@ -26,5 +30,8 @@ public class BoardViewResponse {
         this.deviceName = board.getDevice().getDeviceName();
         this.nickname = board.getUser().getNickname();
         this.rollId = currentUser.getRollId();
+        this.imageUrls = board.getImages().stream()
+                .map(Image::getFileUrl)
+                .collect(Collectors.toList());
     }
 }
