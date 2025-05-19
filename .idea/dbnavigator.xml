@@ -51,7 +51,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5">
-      <console name="rds" type="STANDARD" schema="fixi" session="Main"><![CDATA[create database fixi;
+      <console name="rds" type="STANDARD" schema="fixi" session="Main">create database fixi;
 use fixi;
 
 create table users (
@@ -74,7 +74,7 @@ select * from refresh_token;
 
 truncate table board
 truncate table device
-truncate table users]]></console>
+truncate table users</console>
     </connection>
     <connection id="e99d9729-de5d-4787-980b-7704fa2ad552">
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
@@ -84,9 +84,7 @@ truncate table users]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" object-ref="consoles/rds" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" />
@@ -454,12 +452,20 @@ truncate table users]]></console>
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JPA QL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
+          <content-type name="PHP" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="VTL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>
