@@ -35,11 +35,11 @@ public class MatchChatApiController {
         return ResponseEntity.ok(mc);
     }
 
-    @Operation(summary = "매칭 챗팅 기록 조회", description = "매칭 챗팅 기록 조회을 조회합니다")
-    @GetMapping("/record")
-    public ResponseEntity<List<MatchChat>> getChatList(@RequestParam("rcv_id") Long rcv_id) {
-        List<MatchChat> mc = matchChatService.getMatchChatList(rcv_id);
-        return ResponseEntity.ok(mc);
-    }
+//    @Operation(summary = "매칭 챗팅 기록 조회", description = "매칭 챗팅 기록 조회을 조회합니다")
+//    @GetMapping("/record")
+//    public ResponseEntity<List<MatchChat>> getChatList(@RequestParam("rcv_id") Long rcv_id) {
+//        List<MatchChat> mc = matchChatService.getMatchChatList(rcv_id);
+//        return ResponseEntity.ok(mc);
+//    }
 
 }
