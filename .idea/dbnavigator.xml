@@ -51,7 +51,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5">
-      <console name="rds" type="STANDARD" schema="fixi" session="Main">create database fixi;
+      <console name="rds" type="STANDARD" schema="fixi" session="Main"><![CDATA[create database fixi;
 use fixi;
 
 create table users (
@@ -89,7 +89,7 @@ CREATE TABLE board (
 
     CONSTRAINT fk_board_user FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT fk_board_device FOREIGN KEY (device_id) REFERENCES device(device_id)
-);</console>
+);]]></console>
     </connection>
     <connection id="e99d9729-de5d-4787-980b-7704fa2ad552">
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
@@ -250,7 +250,7 @@ CREATE TABLE board (
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="fixiroot@112.148.9.199" />
+          <session-user value="fixiroot@203.253.158.79" />
         </database>
         <properties>
           <auto-commit value="false" />
