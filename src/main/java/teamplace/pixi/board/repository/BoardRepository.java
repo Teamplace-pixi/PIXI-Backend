@@ -10,4 +10,5 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findByDevice_DeviceId(Long deviceId);
     List<Board> findTop10ByOrderByCreatedAtDesc();
     List<Board> findAllByUser(User user);
+    Board findByBoardId(Long boardId);
 }
