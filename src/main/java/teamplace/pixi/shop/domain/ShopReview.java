@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "review")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

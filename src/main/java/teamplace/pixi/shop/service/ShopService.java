@@ -111,12 +111,12 @@ public class ShopService {
                 .shop(shop)
                 .user(user)
                 .device(device)
-                .createdAt(LocalDateTime.now())
                 .reviewStar(addReviewRequest.getReviewStar())
                 .reviewMoney(addReviewRequest.getReviewMoney())
                 .reviewContent(addReviewRequest.getReviewContent())
                 .reviewTitle(addReviewRequest.getReviewTitle())
                 .reviewTime(addReviewRequest.getReviewTime())
+                .createdAt(LocalDateTime.now())
                 .build();
 
         return shopReviewRepository.save(review);
