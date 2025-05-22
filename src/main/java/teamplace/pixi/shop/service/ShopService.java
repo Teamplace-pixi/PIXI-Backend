@@ -1,13 +1,16 @@
 package teamplace.pixi.shop.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.Device.domain.Device;
 import teamplace.pixi.Device.repository.DeviceRepository;
+import teamplace.pixi.Device.service.DeviceService;
 import teamplace.pixi.shop.domain.Shop;
 import teamplace.pixi.shop.domain.ShopReview;
+import teamplace.pixi.shop.dto.AddReviewRequest;
 import teamplace.pixi.shop.dto.AddShopRequest;
 import teamplace.pixi.shop.dto.ShopListViewResponse;
 import teamplace.pixi.shop.dto.ShopReviewListViewResponse;
@@ -19,6 +22,7 @@ import teamplace.pixi.user.service.UserService;
 import teamplace.pixi.util.s3.AwsS3Service;
 import teamplace.pixi.util.s3.Image;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,6 +37,7 @@ public class ShopService {
     private final UserService userService;
     private final UserRepository userRepository;
     private final AwsS3Service awsS3Service;
+    private final DeviceService deviceService;
 
     //수리업체 리스트
     public List<ShopListViewResponse> getShopList(Integer type){
@@ -90,23 +95,33 @@ public class ShopService {
 
     //수리업체 후기 리스트
     public List<ShopReviewListViewResponse> getShopReviews(Long shopId){
-        List<ShopReview> reviews = shopReviewRepository.findReviewsByShopId(shopId);
+        List<ShopReview> reviews = shopReviewRepository.findByShop_ShopId(shopId);
         return reviews.stream()
-                .map(this::ReviewconvertToDto)
+                .map(review -> new ShopReviewListViewResponse(review,deviceService.getDeviceCategory(review.getDevice().getDeviceId()) ))
                 .collect(Collectors.toList());
     }
 
-    private ShopReviewListViewResponse ReviewconvertToDto(ShopReview shopReview) {
-        ShopReviewListViewResponse dto = new ShopReviewListViewResponse();
-        dto.setReviewId(shopReview.getReviewId());
-        dto.setReviewStar(shopReview.getReviewStar());
-        dto.setReviewTitle(shopReview.getReviewTitle());
-        dto.setReivewContent(shopReview.getReviewContent());
-        dto.setReviewMoney(shopReview.getReviewMoney());
-        dto.setReviewTime(shopReview.getReviewTime());
-        dto.setReviewDate(shopReview.getCreatedAt());
-        return dto;
+    @Transactional
+    public ShopReview  createReview(AddReviewRequest addReviewRequest){
+        Shop shop = findShopById(addReviewRequest.getShop_id());
+        User user = userService.getCurrentUser();
+        Device device = deviceService.getDeviceById(addReviewRequest.getDevice_id());
+
+        ShopReview review = ShopReview.builder()
+                .shop(shop)
+                .user(user)
+                .device(device)
+                .createdAt(LocalDateTime.now())
+                .reviewStar(addReviewRequest.getReviewStar())
+                .reviewMoney(addReviewRequest.getReviewMoney())
+                .reviewContent(addReviewRequest.getReviewContent())
+                .reviewTitle(addReviewRequest.getReviewTitle())
+                .reviewTime(addReviewRequest.getReviewTime())
+                .build();
+
+        return shopReviewRepository.save(review);
     }
+
 
     @Transactional
     public Shop save(AddShopRequest request, MultipartFile certificationFile, MultipartFile thumbFile) {
@@ -141,4 +156,11 @@ public class ShopService {
                 .thumb(request.getThumb())
                 .build();
     }
+
+    private Shop findShopById(Long shopId) {
+        return shopRepository.findByShopId(shopId)
+                .orElseThrow(() -> new EntityNotFoundException("해당 ID의 수리업체(shop)가 존재하지 않습니다."));
+    }
+
+
 }

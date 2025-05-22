@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import teamplace.pixi.shop.domain.Shop;
 import org.springframework.http.ResponseEntity;
+import teamplace.pixi.shop.dto.AddReviewRequest;
 import teamplace.pixi.shop.dto.ShopReviewListViewResponse;
 import teamplace.pixi.shop.service.ShopService;
 
@@ -35,6 +36,13 @@ public class ShopApiController {
     public ResponseEntity<List<ShopReviewListViewResponse>> getShopReveiwList(@PathVariable("shopId") Long shopId){
         List<ShopReviewListViewResponse> shopReview = shopService.getShopReviews(shopId);
         return ResponseEntity.ok(shopReview);
+    }
+
+    @Operation(summary = "수리업체 리뷰 작성",description = "수리업체 리뷰를 작성합니다")
+    @PostMapping("/review")
+    public ResponseEntity<?> createShopReview(@RequestBody AddReviewRequest request) {
+        shopService.createReview(request);
+        return ResponseEntity.ok("후기 작성 완료");
     }
 
 }
