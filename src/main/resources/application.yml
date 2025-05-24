@@ -1,17 +1,3 @@
-cloud:
-  config:
-    import: optional:file:.env[.properties]
-  aws:
-    credentials:
-      access-key: ${ACCESS_KEY}
-      secret-key: ${SECRET_KEY}
-    region:
-      static: ap-northeast-2  # 버킷의 리전
-    s3:
-      bucket: fixi-s3-bucket    # 버킷 이름
-    stack:
-      auto: false
-
 spring:
   servlet:
     multipart:
@@ -29,7 +15,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
   config:
-    import: optional:file:.env[.properties]
+    import: optional:file:.env[.properties],optional:aws-secretsmanager:/fixi/application-secrets
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
