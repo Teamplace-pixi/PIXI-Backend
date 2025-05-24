@@ -27,6 +27,7 @@ dependencies {
     implementation 'software.amazon.awssdk:secretsmanager:2.25.22'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'com.paypal.sdk:rest-api-sdk:1.14.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
