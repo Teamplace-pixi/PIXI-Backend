@@ -12,6 +12,7 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
     List<Shop> findByShopDevice(Integer shopDevice);
     Optional<Shop> findByShopId(Long shopId);
     Shop findByUserId(Long userId);
+    Optional<Shop> findOptionalByUserId(Long userId);
     @Query(value = "SELECT s.*, COUNT(r.shop_id) AS review_count " +
             "FROM shop s " +
             "LEFT JOIN review r ON s.shop_id = r.shop_id " +

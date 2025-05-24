@@ -2,6 +2,7 @@ package teamplace.pixi.shop.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import teamplace.pixi.user.domain.User;
 
 @Entity
 @Table(name = "shop")
@@ -44,4 +45,27 @@ public class Shop {
     @Column(name = "thumb", columnDefinition = "TEXT")
     private String thumb;
 
+    // 상호명 변경
+    public Shop updateShopName(String shopName) {
+        this.shopName = shopName;
+        return this;
+    }
+
+    // 번호 변경
+    public Shop updateShopCall(String shopCall) {
+        this.shopCall = shopCall;
+        return this;
+    }
+
+    // 소재지 변경
+    public Shop updateShopLoc(String shopLoc) {
+        this.shopLoc = shopLoc;
+        return this;
+    }
+
+    // 썸네일 변경
+    public Shop updateThumb(String thumb) {
+        this.thumb = thumb;
+        return this;
+    }
 }

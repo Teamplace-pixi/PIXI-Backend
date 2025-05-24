@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.board.dto.BoardListViewResponse;
 import teamplace.pixi.board.service.BoardService;
 import teamplace.pixi.shop.dto.AddShopRequest;
+import teamplace.pixi.shop.dto.UpdateShopRequest;
 import teamplace.pixi.shop.service.ShopService;
 import teamplace.pixi.user.domain.User;
 import teamplace.pixi.user.dto.*;
@@ -77,6 +78,16 @@ public class MyPageApiController {
             @RequestPart("thumb") MultipartFile thumbFile
     ) {
         shopService.save(request, certificationFile, thumbFile);
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "마이페이지 수리업체 정보 수정", description = "현재 로그인한 사용자의 수리업체 정보를 수정합니다. ")
+    @PutMapping("/shop")
+    public ResponseEntity<?> updateShop(
+            @RequestPart("shop") UpdateShopRequest request,
+            @RequestPart("thumb") MultipartFile thumbFile
+    ) {
+        shopService.updateShopInfo(request, thumbFile);
         return ResponseEntity.ok().build();
     }
 
