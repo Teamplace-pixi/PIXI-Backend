@@ -24,14 +24,14 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD}
 
   jwt:
-    issuer: ${JWT_ISSUER}
-    secret_key: ${JWT_SECRET}
+    issuer: sanhagteamplace@gmail.com
+    secret_key: teamplace-fixi
 
-  #  rabbitmq:
-  #    host: localhost
-  #    port: 5672
-  #    username: guest
-  #    password: guest
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
 
   rabbitmq:
     host: ${RABBITMQ_URL}
@@ -40,21 +40,3 @@ spring:
     password: ${RABBITMQ_PASSWORD}
     ssl:
       enabled: true
-
-cloud:
-  aws:
-    region:
-      static: ap-northeast-2
-    credentials:
-      access-key: ${ACCESS_KEY}
-      secret-key: ${SECRET_KEY}
-    s3:
-      bucket: ${S3_BUCKET}
-    stack:
-      auto: false
-
-paypal:
-  return-url: ${RETURN_URL}
-  cancel-url: ${CANCEL_URL}
-  client-id: ${CLIENT_ID}
-  client-secret: ${CLIENT_SECRET}

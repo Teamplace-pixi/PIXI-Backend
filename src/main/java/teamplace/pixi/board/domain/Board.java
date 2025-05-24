@@ -83,4 +83,8 @@ public class Board {
         this.boardDate = boardDate;
         this.boardStatus = boardStatus;
     }
+
+    public void updateBoardStatus(String boardStatus) {
+        this.boardStatus = boardStatus;
+    }
 }

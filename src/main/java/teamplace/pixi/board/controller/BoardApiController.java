@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import teamplace.pixi.board.domain.Board;
 import teamplace.pixi.board.dto.AddBoardRequest;
 import teamplace.pixi.board.dto.BoardViewResponse;
+import teamplace.pixi.board.dto.UpdateBoardStatusRequest;
 import teamplace.pixi.board.service.BoardService;
 import teamplace.pixi.util.error.SuccessResponse;
 
@@ -48,4 +49,12 @@ public class BoardApiController {
     public BoardViewResponse getBoardView(@PathVariable Long boardId) {
         return boardService.getBoardView(boardId);
     }
+
+    @Operation(summary = "구해요 상태 변경", description = "구해요 본문을 모집중/예약중/모집 완료로 수정합니다")
+    @PutMapping("/board_id={boardId}")
+    public ResponseEntity<String> updateBoard(@PathVariable("boardId") Long boardId, @RequestBody UpdateBoardStatusRequest status){
+        boardService.updateBoardStatus(boardId, status.getStatus());
+        return ResponseEntity.ok("구해요 상태 변경 성공");
+    }
+
 }

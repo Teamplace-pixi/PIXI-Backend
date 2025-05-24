@@ -1,5 +1,6 @@
 package teamplace.pixi.board.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,6 +59,16 @@ public class BoardService {
         imageRepository.deleteAll(board.getImages());
         boardRepository.delete(board);
     }
+
+    @Transactional
+    public void updateBoardStatus(Long boardId, String status){
+        Board b = boardRepository.findByBoardId(boardId);
+        if (b == null) {
+            throw new EntityNotFoundException("해당 boardId에 해당하는 게시판이 존재하지 않습니다: " + boardId);
+        }
+        b.updateBoardStatus(status);
+    }
+
 
 
     public BoardViewResponse getBoardView(Long boardId) {
