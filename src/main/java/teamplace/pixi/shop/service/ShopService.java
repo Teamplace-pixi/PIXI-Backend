@@ -10,10 +10,7 @@ import teamplace.pixi.Device.repository.DeviceRepository;
 import teamplace.pixi.Device.service.DeviceService;
 import teamplace.pixi.shop.domain.Shop;
 import teamplace.pixi.shop.domain.ShopReview;
-import teamplace.pixi.shop.dto.AddReviewRequest;
-import teamplace.pixi.shop.dto.AddShopRequest;
-import teamplace.pixi.shop.dto.ShopListViewResponse;
-import teamplace.pixi.shop.dto.ShopReviewListViewResponse;
+import teamplace.pixi.shop.dto.*;
 import teamplace.pixi.shop.repository.ShopRepository;
 import teamplace.pixi.shop.repository.ShopReviewRepository;
 import teamplace.pixi.user.domain.User;
@@ -122,7 +119,6 @@ public class ShopService {
         return shopReviewRepository.save(review);
     }
 
-
     @Transactional
     public Shop save(AddShopRequest request, MultipartFile certificationFile, MultipartFile thumbFile) {
         User user = userService.getCurrentUser();
@@ -157,10 +153,34 @@ public class ShopService {
                 .build();
     }
 
+    @Transactional
+    public void updateShopInfo(UpdateShopRequest request, MultipartFile thumbFile) {
+        User user = userService.getCurrentUser();
+
+        Shop shop = shopRepository.findOptionalByUserId(user.getUserId())
+                .orElseThrow(() -> new IllegalStateException("등록된 수리업체가 없습니다."));
+
+        String thumbUrl = shop.getThumb(); // 기존 썸네일
+        if (thumbFile != null && !thumbFile.isEmpty()) {
+            // S3 객체 키 추출
+            String oldThumbFileName = awsS3Service.extractFileNameFromUrl(thumbUrl);
+
+            // 기존 썸네일 삭제
+            awsS3Service.deleteFile(List.of(oldThumbFileName));
+
+            // 새 썸네일 업로드
+            Image newThumb = awsS3Service.uploadSingleFile(thumbFile);
+            thumbUrl = newThumb.getFileUrl();
+        }
+
+        shop.updateShopName(request.getShopName());
+        shop.updateShopCall(request.getShopCall());
+        shop.updateShopLoc(request.getShopLoc());
+        shop.updateThumb(thumbUrl);
+    }
+
     private Shop findShopById(Long shopId) {
         return shopRepository.findByShopId(shopId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 ID의 수리업체(shop)가 존재하지 않습니다."));
     }
-
-
 }
