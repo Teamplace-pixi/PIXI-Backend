@@ -15,7 +15,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
   config:
-    import: optional:file:.env[.properties],optional:aws-secretsmanager:/fixi/application-secrets
+    import: 'aws-secretsmanager:/fixi/application-secrets'
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
