@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AiChatRequest {
-    private Long userId;
+    private long userId;
     private String message;
 }
