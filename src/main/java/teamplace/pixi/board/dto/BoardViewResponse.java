@@ -16,6 +16,7 @@ public class BoardViewResponse {
     private final String boardLoc;
     private final int boardCost;
     private final String boardDate;
+    private final String createdAt; // "yyyy-MM-dd HH:mm"
     private final String deviceName;
     private final String nickname;
     private final int rollId;
@@ -27,6 +28,7 @@ public class BoardViewResponse {
         this.boardLoc = board.getBoardLoc();
         this.boardCost = board.getBoardCost();
         this.boardDate = board.getBoardDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.createdAt = board.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.deviceName = board.getDevice().getDeviceName();
         this.nickname = board.getUser().getNickname();
         this.rollId = currentUser.getRollId();
