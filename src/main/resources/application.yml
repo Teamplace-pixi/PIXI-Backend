@@ -1,17 +1,3 @@
-cloud:
-  config:
-    import: optional:file:.env[.properties]
-  aws:
-    credentials:
-      access-key: ${ACCESS_KEY}
-      secret-key: ${SECRET_KEY}
-    region:
-      static: ap-northeast-2  # 버킷의 리전
-    s3:
-      bucket: fixi-s3-bucket    # 버킷 이름
-    stack:
-      auto: false
-
 spring:
   servlet:
     multipart:
@@ -19,8 +5,8 @@ spring:
       max-request-size: 10MB # multipart/form-data 요청의 최대 허용 크기. 기본 10MB
 
   jpa:
-#    hibernate:
-#      ddl-auto: update
+    #    hibernate:
+    #      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -29,7 +15,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
   config:
-    import: optional:file:.env[.properties]
+    import: 'aws-secretsmanager:/fixi/application-secrets'
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -38,14 +24,14 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD}
 
   jwt:
-    issuer: sanhagteamplace@gmail.com
-    secret_key: teamplace-fixi
+    issuer: ${JWT_ISSUER}
+    secret_key: ${JWT_SECRET}
 
-#  rabbitmq:
-#    host: localhost
-#    port: 5672
-#    username: guest
-#    password: guest
+  #  rabbitmq:
+  #    host: localhost
+  #    port: 5672
+  #    username: guest
+  #    password: guest
 
   rabbitmq:
     host: ${RABBITMQ_URL}
@@ -54,3 +40,21 @@ spring:
     password: ${RABBITMQ_PASSWORD}
     ssl:
       enabled: true
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key: ${ACCESS_KEY}
+      secret-key: ${SECRET_KEY}
+    s3:
+      bucket: ${S3_BUCKET}
+    stack:
+      auto: false
+
+paypal:
+  return-url: ${RETURN_URL}
+  cancel-url: ${CANCEL_URL}
+  client-id: ${CLIENT_ID}
+  client-secret: ${CLIENT_SECRET}

@@ -99,4 +99,11 @@ public class AwsS3Service {
                 amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName))
         );
     }
+
+    public String extractFileNameFromUrl(String url) {
+        if (url == null || !url.contains("/")) {
+            throw new IllegalArgumentException("유효하지 않은 파일 URL입니다.");
+        }
+        return url.substring(url.lastIndexOf("/") + 1);
+    }
 }

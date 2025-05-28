@@ -65,6 +65,11 @@ public class UserService implements UserDetailsService {
         user.updateProfileId(request.getProfileId());
     }
 
+    @Transactional
+    public void updateSubscription(User user, boolean isSub) {
+        user.updateSubscription(isSub);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByLoginId(username)
