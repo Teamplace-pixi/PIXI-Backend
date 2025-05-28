@@ -20,7 +20,7 @@ public class ShopReviewListViewResponse {
     private List<String> category;
 
     public ShopReviewListViewResponse(ShopReview review, List<String> category) {
-        this.userName = review.getUser().getNickname();
+        this.userName = (review.getUser() != null) ? review.getUser().getNickname() : "탈퇴회원";
         this.reviewId = review.getReviewId();
         this.reviewStar = review.getReviewStar();
         this.reviewTitle = review.getReviewTitle();
