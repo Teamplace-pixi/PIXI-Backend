@@ -53,7 +53,7 @@ public class BoardApiController {
     @Operation(summary = "구해요 상태 변경", description = "구해요 본문을 모집중/예약중/모집 완료로 수정합니다")
     @PutMapping("/board_id={boardId}")
     public ResponseEntity<String> updateBoard(@PathVariable("boardId") Long boardId, @RequestBody UpdateBoardStatusRequest status){
-        boardService.updateBoardStatus(boardId, status.getStatus());
+        boardService.updateBoardStatus(boardId, status);
         return ResponseEntity.ok("구해요 상태 변경 성공");
     }
 

@@ -70,4 +70,21 @@ public class UserService implements UserDetailsService {
         return userRepository.findByLoginId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
     }
+
+    public User getUser(Long userId){
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+    }
+
+    public Long getUserId(String loginId){
+        User user = userRepository.findByLoginId(loginId)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+        return user.getUserId();
+    }
+
+    public Integer getUserRollId(Long userId){
+        return userRepository.findRollIdByUserId(userId);
+    }
+
+
 }

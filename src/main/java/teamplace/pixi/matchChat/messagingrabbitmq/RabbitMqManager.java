@@ -21,18 +21,21 @@ public class RabbitMqManager {
 
     private final Map<String, SimpleMessageListenerContainer> containers = new ConcurrentHashMap<>();
 
-    public void registerUserQueue(String userId) {
+    public void registerUserQueue(Long userId) {
         String queueName = "chat.user." + userId;
-        System.out.println("Registering queue for userId: " + userId);
-        // 1. 큐 생성
-        Queue queue = new Queue(queueName, true);
-        amqpAdmin.declareQueue(queue);
 
-        // 2. 바인딩 생성
-        Binding binding = BindingBuilder.bind(queue).to(directExchange).with(queueName);
+        // 큐 생성
+        Queue userQueue = new Queue(queueName, true);
+        amqpAdmin.declareQueue(userQueue);
+
+        // 바인딩
+        Binding binding = BindingBuilder.bind(userQueue)
+                .to(directExchange)
+                .with(queueName);
+
         amqpAdmin.declareBinding(binding);
 
-        // 3. 리스너 등록
+        // 리스너 등록
         if (!containers.containsKey(queueName)) {
             MessageListenerAdapter adapter = new MessageListenerAdapter(receiver, "receiveMessage");
             adapter.setMessageConverter(new Jackson2JsonMessageConverter());
@@ -46,5 +49,9 @@ public class RabbitMqManager {
             containers.put(queueName, container);
         }
     }
+
+
+
+
 
 }
