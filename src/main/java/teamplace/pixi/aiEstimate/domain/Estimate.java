@@ -1,13 +1,10 @@
 package teamplace.pixi.aiEstimate.domain;
 
 import jakarta.persistence.*;
-import jakarta.servlet.http.Part;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import teamplace.pixi.aiEstimate.domain.Part;
 import teamplace.pixi.user.domain.User;
-
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -25,10 +22,12 @@ public class Estimate {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private int deviceTypeCode;
-    private String diagnos;
+    private String estimatedCost;
+    private String repairMethod;
     private String caution;
+    private LocalDateTime createdAt;
 
+    @Setter
     @OneToMany(mappedBy = "estimate", cascade = CascadeType.ALL)
     private List<Part> parts;
 }

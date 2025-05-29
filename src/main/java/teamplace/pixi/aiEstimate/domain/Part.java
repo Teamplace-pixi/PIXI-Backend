@@ -24,4 +24,6 @@ public class Part {
     @ManyToOne
     @JoinColumn(name = "estimate_id")
     private Estimate estimate;
+
+
 }
