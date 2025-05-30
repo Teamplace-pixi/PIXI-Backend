@@ -11,7 +11,13 @@ import teamplace.pixi.board.domain.Board;
 import teamplace.pixi.board.dto.AddBoardRequest;
 import teamplace.pixi.board.dto.BoardListViewResponse;
 import teamplace.pixi.board.dto.BoardViewResponse;
+import teamplace.pixi.board.dto.UpdateBoardStatusRequest;
 import teamplace.pixi.board.repository.BoardRepository;
+import teamplace.pixi.matchChat.domain.MatchRoom;
+import teamplace.pixi.matchChat.domain.ParticipantType;
+import teamplace.pixi.matchChat.dto.MatchChatRequest;
+import teamplace.pixi.matchChat.service.MatchChatService;
+import teamplace.pixi.matchChat.service.MatchRoomService;
 import teamplace.pixi.user.domain.User;
 import teamplace.pixi.user.service.UserService;
 import teamplace.pixi.util.s3.AwsS3Service;
@@ -31,6 +37,8 @@ public class BoardService {
     private final UserService userService;
     private final AwsS3Service awsS3Service;
     private final ImageRepository imageRepository;
+    private final MatchChatService matchChatService;
+    private final MatchRoomService matchRoomService;
 
     @Transactional
     public Board save(AddBoardRequest request, List<MultipartFile> multipartFiles) {
@@ -61,12 +69,41 @@ public class BoardService {
     }
 
     @Transactional
-    public void updateBoardStatus(Long boardId, String status){
+    public void updateBoardStatus(Long boardId, UpdateBoardStatusRequest status){
+        String inputStatus = status.getStatus();
+        String infoMessage = null;
+
+        if (!inputStatus.equals("예약중") && !inputStatus.equals("모집완료") && !inputStatus.equals("모집중")) {
+            throw new IllegalArgumentException("잘못된 상태입니다: " + inputStatus);
+        }
+
+        if (inputStatus.equals("예약중")) {
+            infoMessage = "수리 시작";
+        } else if (inputStatus.equals("모집완료")) {
+            infoMessage = "수리 완료";
+        }
+
         Board b = boardRepository.findByBoardId(boardId);
         if (b == null) {
             throw new EntityNotFoundException("해당 boardId에 해당하는 게시판이 존재하지 않습니다: " + boardId);
         }
-        b.updateBoardStatus(status);
+        b.updateBoardStatus(status.getStatus());
+
+        if (infoMessage != null) {
+            MatchRoom m = matchRoomService.findRoomByShopAndUser(status.getShopId(), b.getUser().getUserId());
+
+            MatchChatRequest msg = MatchChatRequest.builder()
+                    .type("info")
+                    .roomId(m.getMroomId())
+                    .message(String.format("\"boardTitle\": \"%s\", \"title\": \"%s\"}", b.getBoardTitle(), infoMessage))
+                    .senderId(b.getUser().getUserId())
+                    .senderType(ParticipantType.USER)
+                    .receiverId(m.getShop().getUserId())
+                    .receiverType(ParticipantType.SHOP)
+                    .build();
+
+            matchChatService.sendMessage(msg);
+        }
     }
 
 
