@@ -1,6 +1,7 @@
 package teamplace.pixi.user.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +13,9 @@ import teamplace.pixi.user.domain.User;
 import teamplace.pixi.user.dto.SignupRequest;
 import teamplace.pixi.user.dto.UpdateMyPageRequest;
 import teamplace.pixi.user.repository.UserRepository;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -68,6 +72,17 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void updateSubscription(User user, boolean isSub) {
         user.updateSubscription(isSub);
+        user.setSubscriptionEndDate(LocalDateTime.now().plusMonths(1));
+        userRepository.save(user);
+    }
+
+    @Scheduled(cron = "0 0 0 * * *") // 매일 자정
+    public void expireSubscriptions() {
+        List<User> expiredUsers = userRepository.findAllBySubscriptionEndDateBefore(LocalDateTime.now());
+        for (User user : expiredUsers) {
+            user.updateSubscription(false);
+        }
+        userRepository.saveAll(expiredUsers);
     }
 
     @Override
