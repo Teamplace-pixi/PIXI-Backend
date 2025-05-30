@@ -99,7 +99,9 @@ CREATE TABLE board (
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" object-ref="consoles/rds" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f6125fa0-75fe-435f-95f1-52fab2ea06a5" />
@@ -149,7 +151,7 @@ CREATE TABLE board (
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="fixiroot@203.253.158.73" />
+          <session-user value="fixiroot@112.148.9.199" />
         </database>
         <properties>
           <auto-commit value="false" />
