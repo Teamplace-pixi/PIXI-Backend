@@ -15,5 +15,6 @@ public class MatchRoomListViewResponse {
     private String userImg;
     private String lastMsg;
     private LocalDateTime lastMsgTime;
-
+    private boolean isRead;
+    private String msgType;
 }

@@ -93,16 +93,13 @@ public class BoardService {
             MatchRoom m = matchRoomService.findRoomByShopAndUser(status.getShopId(), b.getUser().getUserId());
 
             MatchChatRequest msg = MatchChatRequest.builder()
-                    .type("info")
                     .roomId(m.getMroomId())
                     .message(String.format("\"boardTitle\": \"%s\", \"title\": \"%s\"}", b.getBoardTitle(), infoMessage))
                     .senderId(b.getUser().getUserId())
-                    .senderType(ParticipantType.USER)
                     .receiverId(m.getShop().getUserId())
-                    .receiverType(ParticipantType.SHOP)
                     .build();
 
-            matchChatService.sendMessage(msg);
+            matchChatService.sendMessage(msg, "info");
         }
     }
 

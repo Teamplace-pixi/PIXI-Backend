@@ -32,14 +32,14 @@ public class ChatMessageReceiver {
         );
 
         // 채팅방 목록 갱신
-        List<MatchRoomListViewResponse> roomList = (message.getReceiverType() == ParticipantType.SHOP)
-                ? matchRoomFacadeService.getRoomListForShop(receiverId)
-                : matchRoomFacadeService.getRoomListForUser(receiverId);
+//        List<MatchRoomListViewResponse> roomList = (message.getReceiverType() == ParticipantType.SHOP)
+//                ? matchRoomFacadeService.getRoomListForShop(receiverId)
+//                : matchRoomFacadeService.getRoomListForUser(receiverId);
 
         messagingTemplate.convertAndSendToUser(
                 String.valueOf(receiverId),
-                "/queue/rooms",
-                roomList
+                "/queue/alert",
+                "newMsg"
         );
     }
 
