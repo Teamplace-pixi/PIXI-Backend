@@ -47,11 +47,12 @@ public class MatchRoomService {
     }
 
     public List<MatchRoom> findRoomsByUserId(Long userId) {
-        return matchRoomRepository.findByUserIdFetchShop(userId);
+        return matchRoomRepository.findByUserIdFetchShopOrderByUpdatedAtDesc(userId);
     }
 
-    public List<MatchRoom> findRoomsByShopId(Long shopId) {
-        return matchRoomRepository.findByShopIdFetchUser(shopId);
+    public List<MatchRoom> findRoomsForShop(Long userId) {
+        Long shopId = shopService.findByownerId(userId).getShopId();
+        return matchRoomRepository.findByShopIdFetchUserOrderByUpdatedAtDesc(shopId);
     }
 
     public MatchRoom findRoomByShopAndUser(Long shopId, Long userId) {

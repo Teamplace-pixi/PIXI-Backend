@@ -19,11 +19,11 @@ public class MatchChatHistoryReponse {
     private boolean isRead;
     private Long senderId;
 
-    public MatchChatHistoryReponse(MatchChat chat) {
+    public MatchChatHistoryReponse(MatchChat chat, boolean isRead) {
         this.matchId = chat.getMchatId();
         this.content = chat.getContent();
         this.sendTime = chat.getSendTime();
-        this.isRead = chat.isRead();
+        this.isRead = isRead;
         this.senderId = chat.getSenderId();
         this.msgType = chat.getType();
     }

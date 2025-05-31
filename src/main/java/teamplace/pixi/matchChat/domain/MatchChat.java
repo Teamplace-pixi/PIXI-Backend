@@ -29,14 +29,15 @@ public class MatchChat {
     private String type;
 
     private Long senderId;
-    @Enumerated(EnumType.STRING)
-    private ParticipantType senderType;
+//    @Enumerated(EnumType.STRING)
+//    private ParticipantType senderType;
 
     private Long receiverId;
-    @Enumerated(EnumType.STRING)
-    private ParticipantType receiverType;
+//    @Enumerated(EnumType.STRING)
+//    private ParticipantType receiverType;
 
     public void setRead(boolean b) {
         this.isRead = b;
     }
+
 }

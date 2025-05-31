@@ -7,11 +7,13 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import teamplace.pixi.matchChat.domain.MatchChat;
 import teamplace.pixi.matchChat.domain.MatchRoom;
+import teamplace.pixi.matchChat.domain.ParticipantType;
 import teamplace.pixi.matchChat.dto.MatchChatDetailResponse;
 import teamplace.pixi.matchChat.dto.MatchChatHistoryReponse;
 import teamplace.pixi.matchChat.dto.MatchChatRequest;
 import teamplace.pixi.matchChat.repository.MatchChatRepository;
 import teamplace.pixi.matchChat.repository.MatchRoomRepository;
+import teamplace.pixi.user.domain.User;
 import teamplace.pixi.user.service.UserService;
 
 import java.util.List;
@@ -26,9 +28,8 @@ public class MatchChatService {
     private final MatchRoomRepository matchRoomRepository;
     private final RabbitTemplate rabbitTemplate;
     private final UserService userService;
-    private final MatchRoomService matchRoomService;
 
-    public MatchChat save(MatchChatRequest matchChatRequest) {
+    public MatchChat save(MatchChatRequest matchChatRequest, String type) {
         MatchRoom matchRoom = matchRoomRepository.findById(matchChatRequest.getRoomId())
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 room id입니다"));
 
@@ -37,20 +38,19 @@ public class MatchChatService {
                 .content(matchChatRequest.getMessage())
                 .sendTime(LocalDateTime.now())
                 .isRead(false)
-                .type(matchChatRequest.getType())
+                .type(type)
                 .senderId(matchChatRequest.getSenderId())
-                .senderType(matchChatRequest.getSenderType())
                 .receiverId(matchChatRequest.getReceiverId())
-                .receiverType(matchChatRequest.getReceiverType())
                 .build();
 
+        matchRoom.UpdateTime(LocalDateTime.now());
         return matchChatRepository.save(matchChat);
     }
 
-    public void sendMessage(MatchChatRequest messageDto) {
+    public void sendMessage(MatchChatRequest messageDto, String type) {
         String routingKey = "chat.user." + messageDto.getReceiverId();
         rabbitTemplate.convertAndSend("chat.direct", routingKey, messageDto);
-        save(messageDto);
+        save(messageDto, type);
     }
 
     public MatchChat findLastMessageByRoom(MatchRoom room) {
@@ -61,34 +61,33 @@ public class MatchChatService {
     public MatchChatDetailResponse getChatHistory(Long roomId, Long userId) {
         MatchRoom r = matchRoomRepository.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("방을 찾을 수 없습니다."));
-        List<MatchChat> chatlist =  matchChatRepository.findByMatchRoomOrderBySendTimeAsc(r);
-        for (MatchChat chat : chatlist) {
-            // 내가 보낸건 읽음처리
-            if (chat.getSenderId().equals(userId)) {
-                chat.setRead(true);
-            }
-        }
         //rollId 1: shop, 0: user
         Integer rollId = userService.getUserRollId(userId);
         String rcvName;
         Long rcvId;
         Long shopId;
+
         if(rollId == 1){
             //내가 shop -> rcv는 user
             rcvName = r.getUser().getNickname();
             rcvId = r.getUser().getUserId();
             shopId = null;
-            matchChatRepository.markMessagesAsRead(roomId, userId);
+            matchChatRepository.markMessagesAsRead(roomId, userId); // 읽음처리
         }else{
             //내가 user -> rcv는 shop
             rcvName = r.getUser().getNickname();
             rcvId = r.getUser().getUserId();
             shopId = r.getShop().getShopId();
-            matchChatRepository.markMessagesAsRead(roomId, userId);
+            matchChatRepository.markMessagesAsRead(roomId, userId); // 읽음처리
         }
 
+        List<MatchChat> chatlist =  matchChatRepository.findByMatchRoomOrderBySendTimeAsc(r);
+
         List<MatchChatHistoryReponse> dtoList = chatlist.stream()
-                .map(MatchChatHistoryReponse::new) // 필요한 필드만 뽑아서 담는 생성자
+                .map(chat -> {
+                    boolean viewRead = chat.getSenderId().equals(userId) ? true : chat.isRead(); // 💡 핵심 처리
+                    return new MatchChatHistoryReponse(chat, viewRead);
+                })
                 .collect(Collectors.toList());
 
         new MatchChatDetailResponse();
@@ -102,6 +101,16 @@ public class MatchChatService {
 
     }
 
+    public boolean checkIsRead(Long userId, MatchChat msg){
+
+        boolean isMine =  msg.getSenderId().equals(userId);
+        //맞으면 true 반환, 상대가 보낸 메시지라면 db 접근해서 db값 반환하게
+        if(isMine){
+            return true;
+        }else{
+            return msg.isRead();
+        }
+    }
 
 
 }

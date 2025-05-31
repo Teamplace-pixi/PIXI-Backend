@@ -15,10 +15,9 @@ import java.time.LocalDateTime;
 public class MatchChatRequest {
     private Long roomId;
     private String message;
-    private String type; // "info"와 "msg"로 구분
     private Long senderId;
-    private ParticipantType senderType;
+//    private ParticipantType senderType;
     private Long receiverId;
-    private ParticipantType receiverType;
+//    private ParticipantType receiverType;
 //    private LocalDateTime sendTime;
 }

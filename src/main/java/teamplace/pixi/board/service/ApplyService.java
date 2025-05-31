@@ -53,17 +53,14 @@ public class ApplyService {
         Long roomId = matchRoomService.createOrFindMatchRoom(b.getUser().getUserId(), s.getShopId()); // board 작성자 + 지원자 id 넘겨주기
         Apply newapply = applyRepository.save(apply); // 지원서 저장
         MatchChatRequest msg = MatchChatRequest.builder()
-                .type("info")
                 .roomId(roomId)
                 .message(String.format("{\"applyId\": %d, \"boardTitle\": \"%s\", \"title\": \"%s\"}",
                         newapply.getApplyId(), b.getBoardTitle(), "수리 지원"))
                 .senderId(req.getUserId())
-                .senderType(ParticipantType.SHOP)
                 .receiverId(b.getUser().getUserId())
-                .receiverType(ParticipantType.USER)
                 .build();
 
-        matchChatService.sendMessage(msg);
+        matchChatService.sendMessage(msg, "info");
 
         return newapply;
     }

@@ -29,5 +29,7 @@ public class MatchRoom {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-
+    public void UpdateTime(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
