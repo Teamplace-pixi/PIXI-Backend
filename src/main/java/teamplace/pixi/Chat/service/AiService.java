@@ -27,7 +27,7 @@ import java.util.logging.*;
 @RequiredArgsConstructor
 public class AiService {
 
-    private static final String FASTAPI_URL = "http://13.124.186.0:8000/ai/chat";
+    private static final String FASTAPI_URL = "http://43.203.246.125:8000/ai/chat";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final ChatRepository chatRepository;
 
