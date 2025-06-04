@@ -78,8 +78,8 @@ public class MatchChatService {
             matchChatRepository.markMessagesAsRead(roomId, userId); // 읽음처리
         }else{
             //내가 user -> rcv는 shop
-            rcvName = r.getUser().getNickname();
-            rcvId = r.getUser().getUserId();
+            rcvName = r.getShop().getShopName();
+            rcvId = r.getShop().getUserId();
             shopId = r.getShop().getShopId();
             matchChatRepository.markMessagesAsRead(roomId, userId); // 읽음처리
         }
@@ -88,7 +88,7 @@ public class MatchChatService {
 
         List<MatchChatHistoryReponse> dtoList = chatlist.stream()
                 .map(chat -> {
-                    boolean viewRead = chat.getSenderId().equals(userId) ? true : chat.isRead(); // 💡 핵심 처리
+                    boolean viewRead = chat.getSenderId().equals(userId)? true : chat.isRead(); // 💡 핵심 처리
                     return new MatchChatHistoryReponse(chat, viewRead);
                 })
                 .collect(Collectors.toList());
