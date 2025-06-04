@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 public class CreateApplyRequest {
     private long boardId;
-    private long userId;
     private String applyContent;
     private Integer applyCost;
     private LocalDateTime applyDate;

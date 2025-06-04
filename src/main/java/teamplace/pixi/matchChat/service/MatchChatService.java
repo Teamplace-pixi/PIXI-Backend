@@ -58,7 +58,8 @@ public class MatchChatService {
     }
 
     @Transactional
-    public MatchChatDetailResponse getChatHistory(Long roomId, Long userId) {
+    public MatchChatDetailResponse getChatHistory(Long roomId) {
+        Long userId = userService.getCurrentUser().getUserId();
         MatchRoom r = matchRoomRepository.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("방을 찾을 수 없습니다."));
         //rollId 1: shop, 0: user
