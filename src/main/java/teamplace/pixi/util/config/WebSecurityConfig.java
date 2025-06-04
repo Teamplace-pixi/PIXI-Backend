@@ -76,7 +76,8 @@ public class WebSecurityConfig {
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:3000",
                 "http://127.0.0.1:3000",
-                "https://hifixi.com",                // Route 53에서 구매한 도메인
+                "https://hifixi.com",
+                "https://teamplace.hifixi.com",  // Route 53에서 구매한 도메인
                 "https://teamplace-fixi.netlify.app"      // Netlify 기본 도메인
         )); // 프론트 주소
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
