@@ -11,9 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import teamplace.pixi.user.dto.LoginResponse;
-import teamplace.pixi.user.dto.SignupRequest;
-import teamplace.pixi.user.dto.LoginRequest;
+import teamplace.pixi.user.domain.User;
+import teamplace.pixi.user.dto.*;
 import teamplace.pixi.user.repository.UserRepository;
 import teamplace.pixi.util.error.SuccessResponse;
 import teamplace.pixi.util.error.ErrorResponse;
@@ -58,6 +57,15 @@ public class UserApiController {
 
         // 로그인 성공 후 JWT 토큰 반환
         return ResponseEntity.ok(new LoginResponse(token, tokenWs));
+    }
+
+    @Operation(summary = "유저 아이디 조회", description = "유저 아이디를 조회합니다.")
+    @GetMapping("/userId")
+    public ResponseEntity<?> getUserId() {
+        User user = userService.getCurrentUser();
+        return ResponseEntity.ok(new UserIdResponse(
+                user.getUserId()
+        ));
     }
 
 }
