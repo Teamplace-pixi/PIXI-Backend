@@ -33,13 +33,15 @@ public class MatchChatService {
         MatchRoom matchRoom = matchRoomRepository.findById(matchChatRequest.getRoomId())
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 room id입니다"));
 
+        Long userId = userService.getCurrentUser().getUserId();
+
         MatchChat matchChat = MatchChat.builder()
                 .matchRoom(matchRoom)
                 .content(matchChatRequest.getMessage())
                 .sendTime(LocalDateTime.now())
                 .isRead(false)
                 .type(type)
-                .senderId(matchChatRequest.getSenderId())
+                .senderId(userId)
                 .receiverId(matchChatRequest.getReceiverId())
                 .build();
 
