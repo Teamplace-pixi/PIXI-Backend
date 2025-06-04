@@ -183,4 +183,8 @@ public class ShopService {
         return shopRepository.findByShopId(shopId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 ID의 수리업체(shop)가 존재하지 않습니다."));
     }
+
+    public Shop findByownerId(Long ownerId) {
+        return shopRepository.findByUserId(ownerId);
+    }
 }

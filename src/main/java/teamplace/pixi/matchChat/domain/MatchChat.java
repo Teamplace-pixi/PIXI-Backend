@@ -1,15 +1,14 @@
 package teamplace.pixi.matchChat.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Table(name="matchChat")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @Getter
 @Entity
 public class MatchChat {
@@ -17,23 +16,28 @@ public class MatchChat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mchat_id")
     private Long mchatId;
-    @Column(name = "send_id")
-    private Long sendId;
-    @Column(name = "receive_id")
-    private Long receiveId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mroom_id")
+    private MatchRoom matchRoom;
     @Column(name = "content")
     private String content;
     @Column(name = "send_time")
     private LocalDateTime sendTime;
     @Column(name = "is_read")
     private boolean isRead;
+    @Column(name = "type")
+    private String type;
 
-    public MatchChat(Long sendId, Long receiveId, String content, LocalDateTime sendTime, boolean is_read) {
-        this.sendId = sendId;
-        this.receiveId = receiveId;
-        this.content = content;
-        this.sendTime = sendTime;
-        this.isRead = is_read;
+    private Long senderId;
+//    @Enumerated(EnumType.STRING)
+//    private ParticipantType senderType;
+
+    private Long receiverId;
+//    @Enumerated(EnumType.STRING)
+//    private ParticipantType receiverType;
+
+    public void setRead(boolean b) {
+        this.isRead = b;
     }
 
 }

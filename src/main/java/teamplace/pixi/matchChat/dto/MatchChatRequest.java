@@ -1,16 +1,23 @@
 package teamplace.pixi.matchChat.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import teamplace.pixi.matchChat.domain.ParticipantType;
+
+import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class MatchChatRequest {
-    private Long senderId;
-    private Long receiverId;
+    private Long roomId;
     private String message;
+    private Long senderId;
+//    private ParticipantType senderType;
+    private Long receiverId;
+//    private ParticipantType receiverType;
+//    private LocalDateTime sendTime;
 }

@@ -2,13 +2,24 @@ package teamplace.pixi.home.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import teamplace.pixi.board.dto.BoardListViewResponse;
+import teamplace.pixi.board.dto.CreateApplyRequest;
 import teamplace.pixi.board.service.BoardService;
+import teamplace.pixi.home.controller.dto.TokenRequest;
+import teamplace.pixi.home.controller.dto.TokenResponse;
 import teamplace.pixi.shop.dto.ShopListViewResponse;
 import teamplace.pixi.shop.service.ShopService;
+import teamplace.pixi.user.service.UserService;
+import teamplace.pixi.util.jwt.WebSocketJwt;
 
 import java.util.List;
 
@@ -17,6 +28,8 @@ import java.util.List;
 public class HomeApiController {
     private final BoardService boardService;
     private final ShopService shopService;
+    private final AuthenticationManager authenticationManager;
+
 
     @Operation(summary = "홈", description = "홈 진입점")
     @GetMapping("/home")
@@ -37,4 +50,5 @@ public class HomeApiController {
         List<ShopListViewResponse> latestShops = shopService.getShopListAtHome();
         return ResponseEntity.ok(latestShops);
     }
+
 }
