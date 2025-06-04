@@ -48,6 +48,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/users/signup", "/users/login").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtAuthenticationFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -77,6 +78,7 @@ public class WebSecurityConfig {
                 "http://localhost:3000",
                 "http://127.0.0.1:3000",
                 "https://hifixi.com",
+                "https://www.hifixi.com",
                 "https://teamplace.hifixi.com",  // Route 53에서 구매한 도메인
                 "https://teamplace-fixi.netlify.app"      // Netlify 기본 도메인
         )); // 프론트 주소
