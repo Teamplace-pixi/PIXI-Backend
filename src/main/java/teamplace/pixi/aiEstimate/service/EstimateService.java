@@ -31,7 +31,7 @@ public class EstimateService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final String FASTAPI_URL = "http://43.203.246.125:8000/ai/estimate";
+    private final String FASTAPI_URL = "http://13.124.186.0:8000/ai/estimate";
 
     // 1. FastAPI 호출
     public EstimateResponse getEstimate(EstimateRequest request) {
