@@ -11,6 +11,11 @@ import teamplace.pixi.board.dto.CheckApplyResponse;
 import teamplace.pixi.board.dto.CreateApplyRequest;
 import teamplace.pixi.board.repository.ApplyRepository;
 import teamplace.pixi.board.repository.BoardRepository;
+import teamplace.pixi.matchChat.domain.MatchRoom;
+import teamplace.pixi.matchChat.domain.ParticipantType;
+import teamplace.pixi.matchChat.dto.MatchChatRequest;
+import teamplace.pixi.matchChat.service.MatchChatService;
+import teamplace.pixi.matchChat.service.MatchRoomService;
 import teamplace.pixi.shop.domain.Shop;
 import teamplace.pixi.shop.repository.ShopRepository;
 
@@ -23,6 +28,9 @@ public class ApplyService {
     private final BoardRepository boardRepository;
     private final ShopRepository shopRepository;
     private final ApplyRepository applyRepository;
+    private final MatchRoomService matchRoomService;
+    private final MatchChatService matchChatService;
+
 
 
     @Transactional
@@ -31,16 +39,30 @@ public class ApplyService {
         if (shop == null) {
             throw new EntityNotFoundException("해당 유저의 수리업체(shop)가 존재하지 않습니다.");
         }
+        Board b = boardRepository.findByBoardId(req.getBoardId());
+        Shop s = shopRepository.findByUserId(req.getUserId());
         Apply apply = Apply.builder()
-                .board(boardRepository.findByBoardId(req.getBoardId()))
-                .shop(shopRepository.findByUserId(req.getUserId()))
+                .board(b)
+                .shop(s)
                 .applyCost(req.getApplyCost())
                 .applyDate(req.getApplyDate())
                 .applyContent(req.getApplyContent())
                 .applyAt(LocalDateTime.now())
                 .build();
 
-        return applyRepository.save(apply);
+        Long roomId = matchRoomService.createOrFindMatchRoom(b.getUser().getUserId(), s.getShopId()); // board 작성자 + 지원자 id 넘겨주기
+        Apply newapply = applyRepository.save(apply); // 지원서 저장
+        MatchChatRequest msg = MatchChatRequest.builder()
+                .roomId(roomId)
+                .message(String.format("{\"applyId\": %d, \"boardTitle\": \"%s\", \"title\": \"%s\"}",
+                        newapply.getApplyId(), b.getBoardTitle(), "수리 지원"))
+                .senderId(req.getUserId())
+                .receiverId(b.getUser().getUserId())
+                .build();
+
+        matchChatService.sendMessage(msg, "info");
+
+        return newapply;
     }
 
     public ApplyViewResponse getApplyView(Long applyId){
@@ -59,9 +81,6 @@ public class ApplyService {
 
         Apply apply = applyRepository.findByBoardAndShop(board, shop).orElse(null);
         return new CheckApplyResponse(apply != null ? apply.getApplyId() : null);
-
-//        Apply apply = applyRepository.findByBoardAndShop(board, shop)
-//                .orElseThrow(() -> new EntityNotFoundException("지원서가 존재하지 않습니다."));
 
     }
 

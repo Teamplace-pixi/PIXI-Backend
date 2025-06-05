@@ -1,10 +1,7 @@
 package teamplace.pixi.user.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +17,7 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails {
@@ -60,6 +58,8 @@ public class User implements UserDetails {
     @Column(name = "ai_cnt", nullable = false)
     private int aiCnt;
 
+    @Column(name = "subscription_end_date")
+    private LocalDateTime subscriptionEndDate;
 
     @Builder
     public User(String loginId, String password, String email, String nickname, String address,
@@ -103,6 +103,11 @@ public class User implements UserDetails {
     public User updateSubscription(boolean isSub) {
         this.isSub = isSub;
         return this;
+    }
+
+    public boolean isUserSubscribed(User user) {
+        return user.getSubscriptionEndDate() != null &&
+                user.getSubscriptionEndDate().isAfter(LocalDateTime.now());
     }
 
     // 역할 ID 변경

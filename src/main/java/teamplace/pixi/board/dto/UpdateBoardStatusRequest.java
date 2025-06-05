@@ -12,4 +12,9 @@ public class UpdateBoardStatusRequest {
             example = "모집중"
     )
     private String status;
+    @Schema(
+            description = "수리해줄 shopId"
+    )
+    private Long shopId;
+
 }
