@@ -33,13 +33,15 @@ public class MatchChatService {
         MatchRoom matchRoom = matchRoomRepository.findById(matchChatRequest.getRoomId())
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 room id입니다"));
 
+        Long userId = userService.getCurrentUser().getUserId();
+
         MatchChat matchChat = MatchChat.builder()
                 .matchRoom(matchRoom)
                 .content(matchChatRequest.getMessage())
                 .sendTime(LocalDateTime.now())
                 .isRead(false)
                 .type(type)
-                .senderId(matchChatRequest.getSenderId())
+                .senderId(userId)
                 .receiverId(matchChatRequest.getReceiverId())
                 .build();
 
@@ -58,7 +60,8 @@ public class MatchChatService {
     }
 
     @Transactional
-    public MatchChatDetailResponse getChatHistory(Long roomId, Long userId) {
+    public MatchChatDetailResponse getChatHistory(Long roomId) {
+        Long userId = userService.getCurrentUser().getUserId();
         MatchRoom r = matchRoomRepository.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("방을 찾을 수 없습니다."));
         //rollId 1: shop, 0: user
@@ -75,8 +78,8 @@ public class MatchChatService {
             matchChatRepository.markMessagesAsRead(roomId, userId); // 읽음처리
         }else{
             //내가 user -> rcv는 shop
-            rcvName = r.getUser().getNickname();
-            rcvId = r.getUser().getUserId();
+            rcvName = r.getShop().getShopName();
+            rcvId = r.getShop().getUserId();
             shopId = r.getShop().getShopId();
             matchChatRepository.markMessagesAsRead(roomId, userId); // 읽음처리
         }
@@ -85,7 +88,7 @@ public class MatchChatService {
 
         List<MatchChatHistoryReponse> dtoList = chatlist.stream()
                 .map(chat -> {
-                    boolean viewRead = chat.getSenderId().equals(userId) ? true : chat.isRead(); // 💡 핵심 처리
+                    boolean viewRead = chat.getSenderId().equals(userId)? true : chat.isRead(); // 💡 핵심 처리
                     return new MatchChatHistoryReponse(chat, viewRead);
                 })
                 .collect(Collectors.toList());

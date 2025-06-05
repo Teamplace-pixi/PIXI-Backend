@@ -36,7 +36,7 @@ public class ApplyApiController {
 
     @Operation(summary = "지원 여부 조회" , description = "특정 구해요글에 대해 지원 여부를 조회합니다")
     @GetMapping("check")
-    public ResponseEntity<?> checkApply(@RequestParam("boardId") Long boardId, @RequestParam("userId") Long userId) {return ResponseEntity.ok(applyService.hasapplied(boardId, userId));}
+    public ResponseEntity<?> checkApply(@RequestParam("boardId") Long boardId) {return ResponseEntity.ok(applyService.hasapplied(boardId));}
 
 
 

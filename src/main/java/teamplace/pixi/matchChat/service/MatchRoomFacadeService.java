@@ -52,14 +52,16 @@ public class MatchRoomFacadeService {
                     .lastMsg(lastMessage != null ? lastMessage.getContent() : "")
                     .lastMsgTime(lastMessage != null ? lastMessage.getSendTime() : null)
                     .msgType(lastMessage != null? lastMessage.getType(): null)
-                    .isRead((lastMessage != null) ?matchChatService.checkIsRead(room.getShop().getShopId(), lastMessage) : null)
+                    .isRead((lastMessage != null) ?matchChatService.checkIsRead(userId, lastMessage) : null)
                     .build();
         }).collect(Collectors.toList());
     }
 
 
-    public boolean checkAlert(Long userId){
-        int roll = userService.getUserRollId(userId);
+    public boolean checkAlert(){
+        User user = userService.getCurrentUser();
+        Long userId = user.getUserId();
+        int roll = user.getRollId();
         List<MatchRoom> rooms;
         if(roll == 1){
             rooms = matchRoomService.findRoomsForShop(userId);
@@ -74,7 +76,8 @@ public class MatchRoomFacadeService {
         });
     }
 
-    public List<MatchRoomListViewResponse> getRoomList(Long userId) {
+    public List<MatchRoomListViewResponse> getRoomList() {
+        Long userId = userService.getCurrentUser().getUserId();
         int rollId = userService.getUserRollId(userId);
         if(rollId ==1){
             return getRoomListForShop(userId);

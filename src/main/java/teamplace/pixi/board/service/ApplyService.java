@@ -18,6 +18,7 @@ import teamplace.pixi.matchChat.service.MatchChatService;
 import teamplace.pixi.matchChat.service.MatchRoomService;
 import teamplace.pixi.shop.domain.Shop;
 import teamplace.pixi.shop.repository.ShopRepository;
+import teamplace.pixi.user.service.UserService;
 
 import java.time.LocalDateTime;
 
@@ -30,17 +31,19 @@ public class ApplyService {
     private final ApplyRepository applyRepository;
     private final MatchRoomService matchRoomService;
     private final MatchChatService matchChatService;
+    private final UserService userService;
 
 
 
     @Transactional
     public Apply save(CreateApplyRequest req){
-        Shop shop = shopRepository.findByUserId(req.getUserId());
+        Long userId = userService.getCurrentUser().getUserId();
+        Shop shop = shopRepository.findByUserId(userId);
         if (shop == null) {
             throw new EntityNotFoundException("해당 유저의 수리업체(shop)가 존재하지 않습니다.");
         }
         Board b = boardRepository.findByBoardId(req.getBoardId());
-        Shop s = shopRepository.findByUserId(req.getUserId());
+        Shop s = shopRepository.findByUserId(userId);
         Apply apply = Apply.builder()
                 .board(b)
                 .shop(s)
@@ -56,7 +59,7 @@ public class ApplyService {
                 .roomId(roomId)
                 .message(String.format("{\"applyId\": %d, \"boardTitle\": \"%s\", \"title\": \"%s\"}",
                         newapply.getApplyId(), b.getBoardTitle(), "수리 지원"))
-                .senderId(req.getUserId())
+                .senderId(userId)
                 .receiverId(b.getUser().getUserId())
                 .build();
 
@@ -71,7 +74,8 @@ public class ApplyService {
         return new ApplyViewResponse(apply, shop);
     }
 
-    public CheckApplyResponse hasapplied(Long boardId, Long userId){
+    public CheckApplyResponse hasapplied(Long boardId){
+        Long userId = userService.getCurrentUser().getUserId();
         Shop shop = shopRepository.findByUserId(userId);
         if (shop == null) {
             throw new EntityNotFoundException("해당 유저의 수리업체(shop)가 존재하지 않습니다.");

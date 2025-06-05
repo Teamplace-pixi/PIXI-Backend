@@ -15,8 +15,8 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="ebdb@awseb-e-32aa3edpe3-stack-awsebrdsdatabase-dveyp4lawu4b.c1seskuu82w4.ap-northeast-2.rds.amazonaws.com" uuid="31ba5b91-6cbb-4c18-8b6e-1d1244977953">
-      <database-info product="MySQL" version="8.0.40" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.7.12" dbms="MYSQL" exact-version="8.0.40" exact-driver-version="2.7">
+    <data-source name="FIXI_DEPLOY" uuid="7c52d1c7-205b-499d-bd64-8c8a7624efcc">
+      <database-info product="MySQL" version="8.0.40" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.40" exact-driver-version="8.2">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
