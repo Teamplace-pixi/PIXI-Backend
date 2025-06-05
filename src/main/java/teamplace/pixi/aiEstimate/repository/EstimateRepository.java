@@ -6,6 +6,6 @@ import teamplace.pixi.user.domain.User;
 
 import java.util.List;
 
-public interface EstimateRepository extends JpaRepository<Estimate, Long> {
-    List<Estimate> findByUserId(User user); // 조회용
+public interface EstimateRepository extends JpaRepository<Estimate, String> {
+    List<Estimate> findByUser_LoginId(String loginId); // 조회용
 }

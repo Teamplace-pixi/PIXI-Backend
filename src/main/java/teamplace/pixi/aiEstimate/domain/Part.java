@@ -25,5 +25,4 @@ public class Part {
     @JoinColumn(name = "estimate_id")
     private Estimate estimate;
 
-
 }

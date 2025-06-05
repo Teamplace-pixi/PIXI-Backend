@@ -26,7 +26,7 @@ public class AiController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.internalServerError()
-                    .body(new AiChatResponse("AI 응답 처리 실패", null));
+                    .body(new AiChatResponse("AI 응답 처리 실패", false));
         }
     }
 }

@@ -1,11 +1,14 @@
 package teamplace.pixi.Chat.dto;
-
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 @Getter
 @Setter
 public class AiChatRequest {
-    private long userId;
+
+    @JsonProperty("login_id")
+    private String loginId;
+
+    @JsonProperty("message")
     private String message;
 }

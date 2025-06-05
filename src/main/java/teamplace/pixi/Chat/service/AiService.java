@@ -27,7 +27,7 @@ import java.util.logging.*;
 @RequiredArgsConstructor
 public class AiService {
 
-    private static final String FASTAPI_URL = "http://13.124.186.0:8000/ai/chat";
+    private static final String FASTAPI_URL = "http://52.79.242.93:8000/ai/chat";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final ChatRepository chatRepository;
 
@@ -35,7 +35,7 @@ public class AiService {
         try {
             // 0. 유저 메세지 저장
             Chat userMessage = Chat.builder()
-                    .userId(dto.getUserId())
+                    .loginId(dto.getLoginId())
                     .isUser(true)
                     .content(dto.getMessage())
                     .timestamp(LocalDateTime.now())
@@ -60,7 +60,7 @@ public class AiService {
 
             int responseCode = conn.getResponseCode();
             if(responseCode !=200){
-                return new AiChatResponse("FastAPI 서버 오류" + responseCode, null);
+                return new AiChatResponse("FastAPI 서버 오류" + responseCode, false);
             }
             // 4. 응답 읽기
             StringBuilder response = new StringBuilder();
@@ -77,7 +77,7 @@ public class AiService {
 
             // 5. 챗봇 메시지 저장
             Chat aiMessage = Chat.builder()
-                    .userId(dto.getUserId())
+                    .loginId(dto.getLoginId())
                     .isUser(false)
                     .content(aiResponse.getReply())
                     .timestamp(LocalDateTime.now())
@@ -89,13 +89,13 @@ public class AiService {
 
         } catch (Exception e) {
             log.error("FastAPI 연결 실패: {}", e.getMessage(),e);
-            return new AiChatResponse("AI 서버 연결 실패", null);
+            return new AiChatResponse("AI 서버 연결 실패", false);
         }
     }
 
     //대화 이력 조회 메서드
-    public List<ChatMessageDto> getChatHistory(Long userId) {
-        return chatRepository.findByUserIdOrderByTimestampAsc(userId)
+    public List<ChatMessageDto> getChatHistory(String loginId) {
+        return chatRepository.findByLoginIdOrderByTimestampAsc(loginId)
                 .stream()
                 .map(chat -> ChatMessageDto.builder()
                         .content(chat.getContent())

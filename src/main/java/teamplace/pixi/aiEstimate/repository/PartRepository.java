@@ -7,5 +7,5 @@ import teamplace.pixi.aiEstimate.domain.Estimate;
 import java.util.List;
 
 public interface PartRepository extends JpaRepository<Part, Long> {
-    List<Part> findByEstimateId(Estimate estimate);
+    List<Part> findByEstimate(Estimate estimate);
 }

@@ -1,6 +1,5 @@
 package teamplace.pixi.aiEstimate.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
@@ -8,9 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import teamplace.pixi.aiEstimate.domain.Estimate;
 import teamplace.pixi.aiEstimate.domain.Part;
-import teamplace.pixi.aiEstimate.dto.EstimateRequest;
-import teamplace.pixi.aiEstimate.dto.EstimateResponse;
-import teamplace.pixi.aiEstimate.dto.EstimateResponse.PartEstimate;
+import teamplace.pixi.aiEstimate.dto.*;
+import teamplace.pixi.aiEstimate.model.*;
 import teamplace.pixi.aiEstimate.repository.EstimateRepository;
 import teamplace.pixi.aiEstimate.repository.PartRepository;
 import teamplace.pixi.user.domain.User;
@@ -31,27 +29,27 @@ public class EstimateService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final String FASTAPI_URL = "http://13.124.186.0:8000/ai/estimate";
+    private final String FASTAPI_URL = "http://52.79.242.93:8000/ai/estimate";
 
     // 1. FastAPI 호출
-    public EstimateResponse getEstimate(EstimateRequest request) {
+    public EstimateResponseDto getEstimate(EstimateRequest request) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<EstimateRequest> entity = new HttpEntity<>(request, headers);
 
-        ResponseEntity<EstimateResponse> response = restTemplate.exchange(
+        ResponseEntity<EstimateResponseDto> response = restTemplate.exchange(
                 FASTAPI_URL,
                 HttpMethod.POST,
                 entity,
-                EstimateResponse.class
+                EstimateResponseDto.class
         );
 
         return response.getBody();
     }
 
     // 2. DB 저장
-    public void saveEstimate(Long userId, EstimateRequest request, EstimateResponse response) {
-        User user = userRepository.findById(userId)
+    public void saveEstimate(String loginId, EstimateRequest request, EstimateResponseDto response) {
+        User user = userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         Estimate estimate = Estimate.builder()
@@ -67,11 +65,11 @@ public class EstimateService {
 
         // Save parts
         List<Part> parts = new ArrayList<>();
-        for (PartEstimate pe : response.getPartEstimates()) {
+        for (PartEstimateDto partEstimateDto : response.getPartEstimates()) {
             Part part = Part.builder()
                     .estimate(estimate)
-                    .partName(pe.getPartName())
-                    .price(pe.getPrice())
+                    .partName(partEstimateDto.getPartName())
+                    .price(partEstimateDto.getPrice())
                     .build();
             parts.add(part);
         }
@@ -80,16 +78,24 @@ public class EstimateService {
         estimate.setParts(parts); // 양방향 매핑을 위한 setter
     }
 
+    private List<PartEstimateDto> toPartEstimateDtoList(List<Part> parts){
+        List<PartEstimateDto> result = new ArrayList<>();
+        for (Part part : parts){
+            result.add(new PartEstimateDto(part.getPartName(),part.getPrice()));
+        }
+        return result;
+    }
+
     // 3. 과거 견적 내역 조회
-    public List<EstimateResponse> getHistory(Long userId) {
-        User user = userRepository.findById(userId)
+    public List<EstimateResponseDto> getHistory(String loginId) {
+        User user = userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        List<Estimate> estimates = estimateRepository.findByUserId(user);
-        List<EstimateResponse> responses = new ArrayList<>();
+        List<Estimate> estimates = estimateRepository.findByUser_LoginId(user.getLoginId());
+        List<EstimateResponseDto> responses = new ArrayList<>();
 
         for (Estimate estimate : estimates) {
-            List<Part> parts = partRepository.findByEstimateId(estimate);
+            List<Part> parts = partRepository.findByEstimate(estimate);
             List<PartEstimate> partEstimates = new ArrayList<>();
 
             for (Part part : parts) {
@@ -99,14 +105,16 @@ public class EstimateService {
                         .build());
             }
 
-            EstimateResponse response = EstimateResponse.builder()
+            EstimateResponseDto responseDto = EstimateResponseDto.builder()
                     .estimatedCost(estimate.getEstimatedCost())
                     .repairMethod(estimate.getRepairMethod())
                     .caution(estimate.getCaution())
-                    .partEstimates(partEstimates)
+                    .partEstimates(toPartEstimateDtoList(parts)) // 변환 메서드 따로 분리 추천
                     .build();
 
-            responses.add(response);
+
+
+            responses.add(responseDto);
         }
 
         return responses;

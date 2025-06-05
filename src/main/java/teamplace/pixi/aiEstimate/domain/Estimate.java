@@ -18,6 +18,7 @@ public class Estimate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -25,6 +26,7 @@ public class Estimate {
     private String estimatedCost;
     private String repairMethod;
     private String caution;
+
     private LocalDateTime createdAt;
 
     @Setter
