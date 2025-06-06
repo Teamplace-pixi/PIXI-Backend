@@ -3,8 +3,10 @@ package teamplace.pixi.Chat.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import teamplace.pixi.Chat.dto.ChatMessageDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="Chat")
@@ -22,6 +24,9 @@ public class Chat{
 
     @Column(name = "user_id",updatable = false)
     private Long userId;
+
+    @Column(name = "login_id",updatable = false)
+    private String loginId;
 
     @Column(name = "is_user",nullable = false)
     private Boolean isUser; // true 면 사용자, false 면 AI

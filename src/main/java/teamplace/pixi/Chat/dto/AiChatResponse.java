@@ -1,5 +1,4 @@
 package teamplace.pixi.Chat.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AiChatResponse {
     private String reply;
-    private String recommend; // "goohyeo" 또는 null
+    private boolean recommend; // "goohyeo" true "평소" false
 }
