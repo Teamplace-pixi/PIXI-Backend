@@ -17,17 +17,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatMessageReceiver {
 
-    private final MatchRoomFacadeService matchRoomFacadeService;
     private final SimpMessagingTemplate messagingTemplate;
 
     public void receiveMessage(MatchChatRequest message) {
-        System.out.println("메시지 수신: "+message.getMessage() + ", 수신자: " + message.getReceiverId());
+        System.out.println("메시지 수신: "+message.getMessage() + ", 수신자: " + message.getReceiverId()+", 송신자" + message.getSenderId());
         Long receiverId = message.getReceiverId();
+        Long senderId = message.getSenderId();
 
         // 채팅방에 메시지 전송
         messagingTemplate.convertAndSendToUser(
                 String.valueOf(receiverId),
                 "/queue/messages."+ message.getRoomId(),
+                message
+        );
+
+
+        messagingTemplate.convertAndSendToUser(
+                String.valueOf(senderId),
+                "/queue/messages." + message.getRoomId(),
                 message
         );
 
