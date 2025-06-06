@@ -5,7 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import teamplace.pixi.Chat.dto.AiChatRequest;
 import teamplace.pixi.Chat.dto.AiChatResponse;
+import teamplace.pixi.Chat.dto.ChatMessageDto;
 import teamplace.pixi.Chat.service.AiService;
+
+import java.util.List;
 
 //RestApi의 엔드포인트
 @RestController
@@ -29,4 +32,11 @@ public class AiController {
                     .body(new AiChatResponse("AI 응답 처리 실패", false));
         }
     }
+
+    @GetMapping("/history/{loginId}")
+    public ResponseEntity<List<ChatMessageDto>> getChatHistory(@PathVariable("loginId") String loginId) {
+        List<ChatMessageDto> history = aiService.getChatHistory(loginId);
+        return ResponseEntity.ok(history);
+    }
+
 }

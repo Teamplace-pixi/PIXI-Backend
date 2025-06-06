@@ -22,16 +22,17 @@ public class EstimateController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/save") // 견적 저장
-    public ResponseEntity<Void> saveEstimate(@RequestParam String loginId,
-                                             @RequestBody EstimateRequest request) {
-        EstimateResponseDto response = estimateService.getEstimate(request);
-        estimateService.saveEstimate(loginId, request, response);
+    @PostMapping("/save")
+    public ResponseEntity<Void> saveEstimate(@RequestParam("loginId") String loginId,
+                                             @RequestBody EstimateResponseDto estimateResponseDto
+    ) {
+        estimateService.saveEstimate(loginId, estimateResponseDto);
         return ResponseEntity.ok().build();
     }
 
+
     @GetMapping("/history/{loginId}") // 사용자별 저장된 견적 내역 조회
-    public ResponseEntity<List<EstimateResponseDto>> getEstimateHistory(@PathVariable String loginId) {
+    public ResponseEntity<List<EstimateResponseDto>> getEstimateHistory(@PathVariable("loginId") String loginId) {
         return ResponseEntity.ok(estimateService.getHistory(loginId));
     }
 }

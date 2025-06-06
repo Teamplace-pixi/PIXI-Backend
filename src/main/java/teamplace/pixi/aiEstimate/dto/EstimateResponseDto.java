@@ -1,5 +1,4 @@
 package teamplace.pixi.aiEstimate.dto;
-
 import lombok.*;
 
 import java.util.List;
@@ -11,7 +10,10 @@ import java.util.List;
 @Builder
 public class EstimateResponseDto {
     private String estimatedCost;
+
     private String repairMethod;
+
     private List<PartEstimateDto> partEstimates;
+
     private String caution;
 }

@@ -3,8 +3,6 @@ package teamplace.pixi.Chat.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.juli.logging.Log;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import teamplace.pixi.Chat.domain.Chat;
 import teamplace.pixi.Chat.dto.AiChatRequest;
@@ -20,14 +18,13 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.logging.*;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class AiService {
 
-    private static final String FASTAPI_URL = "http://52.79.242.93:8000/ai/chat";
+    private static final String FASTAPI_URL = "http://13.124.227.245:8000/ai/chat";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final ChatRepository chatRepository;
 

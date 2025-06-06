@@ -29,7 +29,7 @@ public class EstimateService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final String FASTAPI_URL = "http://52.79.242.93:8000/ai/estimate";
+    private final String FASTAPI_URL = "http://13.124.227.245:8000/ai/estimate";
 
     // 1. FastAPI 호출
     public EstimateResponseDto getEstimate(EstimateRequest request) {
@@ -44,11 +44,12 @@ public class EstimateService {
                 EstimateResponseDto.class
         );
 
+
         return response.getBody();
     }
 
     // 2. DB 저장
-    public void saveEstimate(String loginId, EstimateRequest request, EstimateResponseDto response) {
+    public void saveEstimate(String loginId, EstimateResponseDto response) {
         User user = userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
@@ -60,10 +61,8 @@ public class EstimateService {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        // Save estimate first to get the ID
         estimate = estimateRepository.save(estimate);
 
-        // Save parts
         List<Part> parts = new ArrayList<>();
         for (PartEstimateDto partEstimateDto : response.getPartEstimates()) {
             Part part = Part.builder()
@@ -75,8 +74,9 @@ public class EstimateService {
         }
 
         partRepository.saveAll(parts);
-        estimate.setParts(parts); // 양방향 매핑을 위한 setter
+        estimate.setParts(parts);
     }
+
 
     private List<PartEstimateDto> toPartEstimateDtoList(List<Part> parts){
         List<PartEstimateDto> result = new ArrayList<>();
