@@ -11,4 +11,11 @@ public class AiChatRequest {
 
     @JsonProperty("message")
     private String message;
+
+    //세션 아이디 추가
+    @JsonProperty("sessionId")
+    private String sessionId;
+
+    @JsonProperty("newChat")
+    private boolean newChat;
 }

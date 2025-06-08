@@ -3,10 +3,8 @@ package teamplace.pixi.Chat.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import teamplace.pixi.Chat.dto.ChatMessageDto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name="Chat")
@@ -33,6 +31,14 @@ public class Chat{
 
     @Column(name = "content",nullable = false)
     private String content;
+
+    // 세션 아이디 -> 채팅방 구분용
+    @Column(name = "sessionId", nullable = false)
+    private String sessionId;
+
+    // 채팅방 제목용
+    @Column(name = "newChat")
+    private boolean newChat;
 
     @CreationTimestamp
     @Column(name = "timestamp",nullable = false, updatable = false)

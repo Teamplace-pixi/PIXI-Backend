@@ -12,4 +12,7 @@ public class ChatMessageDto {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;
+
+    //세션아이디 추가
+    private String sessionId;
 }
