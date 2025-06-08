@@ -57,8 +57,8 @@ public class ApplyService {
         Apply newapply = applyRepository.save(apply); // 지원서 저장
         MatchChatRequest msg = MatchChatRequest.builder()
                 .roomId(roomId)
-                .message(String.format("{\"applyId\": %d, \"boardTitle\": \"%s\", \"title\": \"%s\"}",
-                        newapply.getApplyId(), b.getBoardTitle(), "수리 지원"))
+                .message(String.format("{\"applyId\": %d, \"boardTitle\": \"%s\", \"title\": \"%s\", \"boardId\": %d}",
+                        newapply.getApplyId(), b.getBoardTitle(), "수리 지원", b.getBoardId()))
                 .senderId(userId)
                 .receiverId(b.getUser().getUserId())
                 .build();

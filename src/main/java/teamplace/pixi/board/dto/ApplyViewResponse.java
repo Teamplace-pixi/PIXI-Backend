@@ -17,6 +17,7 @@ public class ApplyViewResponse {
     private LocalDateTime applyDate;
     private LocalDateTime applyAt;
     private String applyContent;
+    private Long boardId;
 
     public ApplyViewResponse(Apply apply, Shop shop) {
         this.applyId = apply.getApplyId();
@@ -28,6 +29,7 @@ public class ApplyViewResponse {
         this.applyDate = apply.getApplyDate();
         this.applyAt = apply.getApplyAt();
         this.applyContent = apply.getApplyContent();
+        this.boardId = apply.getBoard().getBoardId();
     }
 
 }
