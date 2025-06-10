@@ -9,6 +9,8 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
 @SecurityScheme(
         name = "Authorization",
@@ -35,6 +37,7 @@ public class SwaggerConfig {
                                 new io.swagger.v3.oas.models.security.SecurityScheme()
                                         .type(io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP)
                                         .scheme("bearer")
-                                        .bearerFormat("JWT")));
+                                        .bearerFormat("JWT")))
+                .servers(List.of(new io.swagger.v3.oas.models.servers.Server().url("https://api.hifixi.com")));
     }
 }

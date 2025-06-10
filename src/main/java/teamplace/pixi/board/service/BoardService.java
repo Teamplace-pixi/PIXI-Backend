@@ -94,7 +94,7 @@ public class BoardService {
 
             MatchChatRequest msg = MatchChatRequest.builder()
                     .roomId(m.getMroomId())
-                    .message(String.format("\"boardTitle\": \"%s\", \"title\": \"%s\"}", b.getBoardTitle(), infoMessage))
+                    .message(String.format("{\"boardTitle\": \"%s\", \"title\": \"%s\"}", b.getBoardTitle(), infoMessage))
                     .senderId(b.getUser().getUserId())
                     .receiverId(m.getShop().getUserId())
                     .build();
