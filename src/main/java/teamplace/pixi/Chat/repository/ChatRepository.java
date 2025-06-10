@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ChatRepository extends JpaRepository<Chat, Long> {
-
-    List<Chat> findByLoginIdOrderByTimestampAsc(String loginId);
+    List<Chat> findByLoginIdAndSessionIdOrderByTimestampAsc(String loginId, String sessionId);
 }
