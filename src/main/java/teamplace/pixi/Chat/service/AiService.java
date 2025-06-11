@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AiService {
 
-    private static final String FASTAPI_URL = "http://3.36.62.77:8000/ai/chat";
+    private static final String FASTAPI_URL = "http://43.202.59.38:8000/ai/chat";
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final ChatRepository chatRepository;
 
